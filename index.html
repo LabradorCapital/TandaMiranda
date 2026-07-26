@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./support.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -48,12 +48,23 @@
     h1, h2, h3, p { text-wrap: pretty; }
     a { color: var(--tm-red-700); }
     a:hover { color: var(--tm-navy-900); }
+    .tm-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
+    .tm-nav a { font: 600 14px/1.2 var(--font-sans); color: var(--tm-navy-900); text-decoration: none; white-space: nowrap; }
+    .tm-nav a:hover, .tm-nav a:focus-visible { color: var(--tm-red-700); text-decoration: underline; }
+    @media (max-width: 900px) { .tm-nav { display: none; } }
   </style>
 </helmet>
 
 <header style="position: relative; z-index: 100; background: #fff; border-bottom: 1px solid var(--color-border-default)">
   <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
     <a href="#inicio" style="display: flex; align-items: center"><img src="assets/tm-logo-horizontal-color.svg" alt="La Tanda Miranda" style="height: 26px"></a>
+    <nav class="tm-nav" aria-label="Navegación principal">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#producto">Nuestro crédito</a>
+      <a href="#proceso">Cómo funciona</a>
+      <a href="#calculadora">Calcula tu pago</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
     <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Button" variant="primary" size="sm" href="#solicitud" hint-size="auto,36px">Solicita tu crédito</x-import>
   </div>
 </header>
@@ -535,21 +546,21 @@
   <div style="max-width: 1080px; margin: 0 auto; text-align: center">
     <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.SectionHeading" title="Tu crédito en" accent="3 pasos" hint-size="100%,90px"></x-import>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 36px; margin-top: 52px; text-align: left">
-      <div style="border-top: 3px solid var(--tm-red-600); padding-top: 22px">
+      <article style="border-top: 3px solid var(--tm-red-600); padding-top: 22px">
         <div style="font: var(--text-overline); letter-spacing: var(--label-tracking); color: var(--tm-red-700)">PASO 1</div>
         <h3 style="margin: 10px 0 8px; font: 700 20px/1.3 var(--font-sans); color: var(--tm-navy-900)">Captura tu solicitud</h3>
         <p style="margin: 0; font: var(--text-body-md); color: var(--color-text-secondary)">Ingresa tus datos en línea o visítanos en nuestra sucursal.</p>
-      </div>
-      <div style="border-top: 3px solid var(--tm-red-600); padding-top: 22px">
+      </article>
+      <article style="border-top: 3px solid var(--tm-red-600); padding-top: 22px">
         <div style="font: var(--text-overline); letter-spacing: var(--label-tracking); color: var(--tm-red-700)">PASO 2</div>
         <h3 style="margin: 10px 0 8px; font: 700 20px/1.3 var(--font-sans); color: var(--tm-navy-900)">Evaluación de crédito</h3>
         <p style="margin: 0; font: var(--text-body-md); color: var(--color-text-secondary)">Validamos tu información y tu capacidad de pago.</p>
-      </div>
-      <div style="border-top: 3px solid var(--tm-red-600); padding-top: 22px">
+      </article>
+      <article style="border-top: 3px solid var(--tm-red-600); padding-top: 22px">
         <div style="font: var(--text-overline); letter-spacing: var(--label-tracking); color: var(--tm-red-700)">PASO 3</div>
         <h3 style="margin: 10px 0 8px; font: 700 20px/1.3 var(--font-sans); color: var(--tm-navy-900)">Disposición de fondos</h3>
         <p style="margin: 0; font: var(--text-body-md); color: var(--color-text-secondary)">Transferencia directa a tu cuenta bancaria al firmar tu contrato.</p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -603,35 +614,35 @@
     <h2 style="margin: 14px 0 0; font: var(--text-h1); color: var(--tm-navy-900)">Transparencia ante todo</h2>
     <p style="margin: 20px 0 0; max-width: 76ch; font: var(--text-body-md); color: var(--color-text-secondary)"><strong style="color: var(--tm-navy-900)">La Tanda Miranda, S.A. de C.V., SOFOM, E.N.R.</strong> es una Entidad No Regulada debidamente inscrita en el Registro de Prestadores de Servicios Financieros (SIPRES) de la CONDUSEF. Para su constitución y operación no requiere autorización de la Secretaría de Hacienda y Crédito Público, y está sujeta a la supervisión de la Comisión Nacional Bancaria y de Valores únicamente en materia de prevención de operaciones con recursos de procedencia ilícita (Art. 95-Bis de la LGOAAC).</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px; margin-top: 36px">
-      <div style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 16px; padding: 24px; display: grid; gap: 12px; align-content: start; justify-items: start">
+      <article style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 16px; padding: 24px; display: grid; gap: 12px; align-content: start; justify-items: start">
         <img src="assets/logo-buro-trans.png" alt="Buró de Entidades Financieras" style="height: 56px">
         <h3 style="margin: 0; font: 700 17px/1.3 var(--font-sans); color: var(--tm-navy-900)">Buró de Entidades Financieras</h3>
         <p style="margin: 0; font: var(--text-body-sm); color: var(--color-text-secondary)">Conoce nuestro desempeño y las calificaciones del sector financiero.</p>
         <a href="https://www.buro.gob.mx" target="_blank" rel="noreferrer" style="color: var(--tm-red-700); font: 700 14px/1.3 var(--font-sans); display: inline-flex; align-items: center; gap: 8px">www.buro.gob.mx
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
-      </div>
-      <div style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 16px; padding: 24px; display: grid; gap: 12px; align-content: start; justify-items: start">
+      </article>
+      <article style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 16px; padding: 24px; display: grid; gap: 12px; align-content: start; justify-items: start">
         <img src="assets/logo-condusef-trans.png" alt="CONDUSEF" style="height: 56px">
         <h3 style="margin: 0; font: 700 17px/1.3 var(--font-sans); color: var(--tm-navy-900)">CONDUSEF</h3>
         <p style="margin: 0; font: var(--text-body-sm); color: var(--color-text-secondary); font-variant-numeric: tabular-nums lining-nums">Tel. 55 53 400 999 y 800 999 8080</p>
         <a href="https://www.condusef.gob.mx" target="_blank" rel="noreferrer" style="color: var(--tm-red-700); font: 700 14px/1.3 var(--font-sans); display: inline-flex; align-items: center; gap: 8px">www.condusef.gob.mx
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></a>
-      </div>
-      <div style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 16px; padding: 24px; display: grid; gap: 12px; align-content: start; justify-items: start">
+      </article>
+      <article style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 16px; padding: 24px; display: grid; gap: 12px; align-content: start; justify-items: start">
         <span style="border: 1px solid var(--color-border-default); border-radius: 10px; padding: 12px; display: inline-flex">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--tm-red-600)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5v-6L12 2.5Z"></path><path d="m8.8 12 2.2 2.2 4.2-4.4"></path></svg></span>
         <h3 style="margin: 0; font: 700 17px/1.3 var(--font-sans); color: var(--tm-navy-900)">Aviso de Privacidad</h3>
         <p style="margin: 0; font: var(--text-body-sm); color: var(--color-text-secondary)">Consulta cómo protegemos y tratamos tus datos personales.</p>
         <a href="#" style="color: var(--tm-red-700); font: 700 14px/1.3 var(--font-sans); display: inline-flex; align-items: center; gap: 8px">Leer Aviso de Privacidad
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      </div>
+      </article>
     </div>
-    <div style="margin-top: 32px">
+    <aside style="margin-top: 32px">
       <div style="background: #fff; border: 1px solid var(--color-border-default); border-radius: 14px; padding: 16px 20px; display: flex; gap: 10px; align-items: flex-start">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--tm-red-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 10v4M12 17.2v.3"></path></svg>
         <p style="margin: 0; font: 400 13px/1.5 var(--font-sans); color: var(--tm-navy-900)"><strong style="font: 700 11px/1.5 var(--font-sans); letter-spacing: var(--label-tracking)">CUIDADO — LEYENDAS DE LEY:</strong> Incumplir tus obligaciones te puede generar comisiones e intereses moratorios.</p>
       </div>
-    </div>
+    </aside>
   </div>
 </section>
 
