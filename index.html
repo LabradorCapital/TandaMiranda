@@ -370,7 +370,7 @@
                   </div>
                   <div style="display: grid; gap: 8px; align-content: start">
                     <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900); min-height: 37px; display: flex; align-items: flex-end">No. de dependientes económicos</label>
-                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ dependientes }}" onChange="{{ onDependientes }}" invalid="{{ vDependientes }}" placeholder="Ej. 2" full-width="{{ true }}" aria-label="Número de dependientes económicos" hint-size="100%,44px"></x-import>
+                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Select" options="{{ dependientesOpts }}" value="{{ dependientes }}" onChange="{{ onDependientes }}" invalid="{{ vDependientes }}" placeholder="Elige un número" full-width="{{ true }}" aria-label="Número de dependientes económicos" hint-size="100%,44px"></x-import>
                   </div>
                 </div>
                 <div style="display: grid; gap: 8px">
@@ -796,14 +796,14 @@ class Component extends DCLogic {
   validate() {
     const st = this.state;
     const digits = (s) => String(s ?? "").replace(/\D/g, "");
-    const money = (s) => /^\$?\s?[\d,]+(\.\d{1,2})?$/.test(String(s ?? "").trim()) && Number(digits(s)) > 0;
+    const money = (s) => /^\$?\s?[\d,]+$/.test(String(s ?? "").trim()) && Number(digits(s)) > 0;
     const errs = {};
     if (!st.solNombre.trim()) errs.solNombre = 1;
     if (!st.apPat.trim()) errs.apPat = 1;
     if (!st.apMat.trim()) errs.apMat = 1;
     if (!st.entidadNac) errs.entidadNac = 1;
     if (!st.fechaNac) errs.fechaNac = 1;
-    if (!/^\d{1,2}$/.test(String(st.dependientes).trim())) errs.dependientes = 1;
+    if (st.dependientes === "" || st.dependientes === null || st.dependientes === undefined) errs.dependientes = 1;
     if (!st.escolaridad) errs.escolaridad = 1;
     if (!money(st.ingresos)) errs.ingresos = 1;
     if (!money(st.gastosFijos)) errs.gastosFijos = 1;
@@ -873,9 +873,11 @@ class Component extends DCLogic {
     fx.vCP = !!(tried && errsAll.domCP);
     fx.showFaltan = !!(tried && st.solStep < 4 && this.stepKeys[st.solStep].some((k) => errsAll[k]));
     fx.stepFaltanMsg = "Este paso tiene campos pendientes o inválidos.";
+    const pesosEnteros = (v) => String(v ?? "").split(".")[0].replace(/[^\d,$\s]/g, "");
     ["apPat", "apMat", "entidadNac", "fechaNac", "escolaridad", "dependientes", "ingresos", "otrosIngresos", "gastosFijos", "domicilio", "antigDom", "prestPlazo", "prestUso"].forEach((k) => {
+      const esMonto = k === "ingresos" || k === "gastosFijos";
       fx[k] = st[k] ?? "";
-      fx["on" + k.charAt(0).toUpperCase() + k.slice(1)] = (e) => this.setState({ [k]: ev(e) });
+      fx["on" + k.charAt(0).toUpperCase() + k.slice(1)] = (e) => this.setState({ [k]: esMonto ? pesosEnteros(ev(e)) : ev(e) });
     });
     ["domCalle", "domNumExt", "domNumInt", "domColonia", "domCP", "domCiudad", "domEstado"].forEach((k) => {
       fx[k] = st[k] ?? "";
@@ -944,6 +946,7 @@ class Component extends DCLogic {
       nacMesOpts: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"].map((m, i) => ({ value: i + 1, label: m })),
       nacAnioOpts: Array.from({ length: 73 }, (_, i) => { const y = new Date().getFullYear() - 18 - i; return { value: String(y), label: String(y) }; }),
       fechaNacEco: st.fechaNac ? "Seleccionada: " + st.fechaNac : "Selecciona día, mes y año.",
+      dependientesOpts: [0, 1, 2, 3, 4, 5].map((n2) => ({ value: n2, label: String(n2) })).concat([{ value: "6+", label: "Más" }]),
       entidadOpts: ["Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"].map((e2) => ({ value: e2, label: e2 })),
       escolaridadPills: ["Primaria", "Secundaria", "Bachillerato", "Universidad"].map((o) => {
         const sel = st.escolaridad === o;
