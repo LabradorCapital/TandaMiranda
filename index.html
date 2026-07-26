@@ -49,24 +49,12 @@
     h1, h2, h3, p { text-wrap: pretty; }
     a { color: var(--tm-red-700); }
     a:hover { color: var(--tm-navy-900); }
-    .tm-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
-    .tm-nav a { font: 600 14px/1.2 var(--font-sans); color: var(--tm-navy-900); text-decoration: none; white-space: nowrap; }
-    .tm-nav a:hover, .tm-nav a:focus-visible { color: var(--tm-red-700); text-decoration: underline; }
-    @media (max-width: 900px) { .tm-nav { display: none; } }
   </style>
 </helmet>
 
 <header style="position: relative; z-index: 100; background: #fff; border-bottom: 1px solid var(--color-border-default)">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-    <a href="#inicio" style="display: flex; align-items: center"><img src="assets/tm-logo-horizontal-color.svg" alt="La Tanda Miranda" style="height: 26px"></a>
-    <nav class="tm-nav" aria-label="Navegación principal">
-      <a href="#beneficios">Beneficios</a>
-      <a href="#producto">Nuestro crédito</a>
-      <a href="#proceso">Cómo funciona</a>
-      <a href="#calculadora">Calcula tu pago</a>
-      <a href="#transparencia">Transparencia</a>
-    </nav>
-    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Button" variant="primary" size="sm" href="#solicitud" hint-size="auto,36px">Solicita tu crédito</x-import>
+  <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+    <img src="assets/tm-logo-horizontal-color.svg" alt="La Tanda Miranda" style="height: 26px">
   </div>
 </header>
 
