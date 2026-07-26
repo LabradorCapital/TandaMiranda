@@ -511,11 +511,13 @@
                 </div>
                 <div style="border-top: 1px solid var(--color-border-default); padding-top: 18px; display: grid; gap: 18px">
                   <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Checkbox" label="Acepto el Aviso de Privacidad y autorizo a La Tanda Miranda a consultar mi historial crediticio." checked="{{ solAcepto }}" onChange="{{ onAcepto }}" hint-size="100%,48px"></x-import>
+                  <!-- Cloudflare Turnstile: se renderiza aquí cuando window.__TURNSTILE_SITE_KEY está configurada (script al final del body). El token viaja en payload.captchaToken. -->
+                  <div id="tm-turnstile" class="cf-turnstile"></div>
                   <sc-if value="{{ solErrShow }}" hint-placeholder-val="{{ false }}">
                     <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Alert" severity="danger" variant="subtle" title="Revisa tu información" hint-size="100%,80px">{{ solErrMsg }}</x-import>
                   </sc-if>
                   <sc-if value="{{ solOk }}" hint-placeholder-val="{{ false }}">
-                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Alert" severity="success" variant="subtle" title="¡Solicitud enviada!" hint-size="100%,80px">Gracias. Un asesor te contactará en un plazo máximo de 1 día hábil para continuar con tu trámite.</x-import>
+                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Alert" severity="success" variant="subtle" title="¡Solicitud enviada!" hint-size="100%,80px">{{ solOkMsg }}</x-import>
                   </sc-if>
                 </div>
               </div>
@@ -528,7 +530,7 @@
                 <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Button" variant="primary" size="md" onClick="{{ nextStep }}" hint-size="auto,40px">Continuar</x-import>
               </sc-if>
               <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
-                <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Button" variant="primary" size="md" onClick="{{ submitSol }}" hint-size="auto,40px">Enviar solicitud</x-import>
+                <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Button" variant="primary" size="md" onClick="{{ submitSol }}" loading="{{ solEnviando }}" hint-size="auto,40px">Enviar solicitud</x-import>
               </sc-if>
             </div>
             <sc-if value="{{ showFaltan }}" hint-placeholder-val="{{ false }}">
@@ -721,6 +723,14 @@
   &quot;valoresIlustrativos&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Información financiera&quot;},
   &quot;plazosCredito&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;12, 24, 36, 48, 60&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Información financiera&quot;}
 }">
+// ─────────────────────────────────────────────────────────────────────────────
+// Endpoint al que se envía la solicitud. Cámbialo por la URL de tu API.
+// Debe aceptar POST con JSON y responder con CORS habilitado para este dominio.
+const WEBHOOK_URL = "https://tu-api.com/endpoint";
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 class Component extends DCLogic {
   componentDidMount() {
     document.documentElement.lang = "es-MX";
@@ -838,7 +848,7 @@ class Component extends DCLogic {
     s2.domicilio = full ? s2.domCalle + " " + s2.domNumExt + (String(s2.domNumInt ?? "").trim() ? " Int. " + s2.domNumInt : "") + ", Col. " + s2.domColonia + ", C.P. " + s2.domCP + ", " + s2.domCiudad + ", " + s2.domEstado : "";
     this.setState({ domCalle: s2.domCalle, domNumExt: s2.domNumExt, domNumInt: s2.domNumInt, domColonia: s2.domColonia, domCP: s2.domCP, domCiudad: s2.domCiudad, domEstado: s2.domEstado, domicilio: s2.domicilio });
   }
-  state = { slide: 0, nacDia: "", nacMes: "", nacAnio: "", antigNum: "", antigUnidad: "años", domCalle: "", domNumExt: "", domNumInt: "", domCiudadOtra: false, domColonia: "", domCP: "", domCiudad: "", domEstado: "", calcMonto: 30000, calcPlazo: 12, calcFrec: "quincenal", solNombre: "", solTel: "", solCorreo: "", solEmpresa: "", solProducto: "", solMonto: "", solAcepto: false, solOk: false, solErrMsg: "", solTried: false, solFlow: false, solStep: 0, apPat: "", apMat: "", entidadNac: "", fechaNac: "", escolaridad: "", dependientes: "", ingresos: "", otrosIngresos: "", gastosFijos: "", domicilio: "", antigDom: "", prestPlazo: "", prestUso: "" };
+  state = { slide: 0, nacDia: "", nacMes: "", nacAnio: "", antigNum: "", antigUnidad: "años", domCalle: "", domNumExt: "", domNumInt: "", domCiudadOtra: false, domColonia: "", domCP: "", domCiudad: "", domEstado: "", calcMonto: 30000, calcPlazo: 12, calcFrec: "quincenal", solNombre: "", solTel: "", solCorreo: "", solEmpresa: "", solProducto: "", solMonto: "", solAcepto: false, solOk: false, solErrMsg: "", solTried: false, solFlow: false, solStep: 0, solEnviando: false, solFolio: "", apPat: "", apMat: "", entidadNac: "", fechaNac: "", escolaridad: "", dependientes: "", ingresos: "", otrosIngresos: "", gastosFijos: "", domicilio: "", antigDom: "", prestPlazo: "", prestUso: "" };
   renderVals() {
     const p = this.props;
     const s = this.state.slide;
@@ -1035,13 +1045,60 @@ class Component extends DCLogic {
       solOk: st.solOk,
       solErrShow: !!st.solErrMsg,
       solErrMsg: st.solErrMsg,
-      submitSol: () => {
+      solEnviando: st.solEnviando,
+      solFolio: st.solFolio,
+      solOkMsg: st.solFolio
+        ? "Gracias. Tu folio es " + st.solFolio + ". Un asesor te contactará en un plazo máximo de 1 día hábil para continuar con tu trámite."
+        : "Gracias. Un asesor te contactará en un plazo máximo de 1 día hábil para continuar con tu trámite.",
+      submitSol: async () => {
+        // Guarda contra doble envío: setState no se aplica de inmediato, así que el
+        // estado no sirve. La bandera vive en window.__tmEnvio (script al final del body).
+        const envio = (typeof window !== "undefined" && window.__tmEnvio) ? window.__tmEnvio : { enCurso: false };
+        if (envio.enCurso) return;
         const errs = this.validate();
         const names = ["Datos personales", "Ingresos y gastos", "Domicilio", "Datos del préstamo"];
         const pend = names.filter((n3, i) => this.stepKeys[i].some((k) => errs[k]));
         if (pend.length) { this.setState({ solTried: true, solErrMsg: "Aún no se puede enviar. Revisa: " + pend.join(", ") + ".", solOk: false }); return; }
-        if (errs.solAcepto) { this.setState({ solTried: true, solErrMsg: "Debes aceptar el Aviso de Privacidad y la consulta de historial crediticio.", solOk: false }); return; }
-        this.setState({ solErrMsg: "", solOk: true });
+        if (!this.state.solAcepto) { this.setState({ solTried: true, solErrMsg: "Debes aceptar el Aviso de Privacidad y la consulta de historial crediticio.", solOk: false }); return; }
+        const turnstileKey = (typeof window !== "undefined" && window.__TURNSTILE_SITE_KEY) ? window.__TURNSTILE_SITE_KEY : "";
+        const captchaToken = (typeof window !== "undefined" && window.__captchaToken) ? window.__captchaToken : "";
+        if (turnstileKey && !captchaToken) { this.setState({ solTried: true, solErrMsg: "Completa la verificación anti-robots (Turnstile) antes de enviar.", solOk: false }); return; }
+        const c = this.state;
+        const str = (v) => (v === null || v === undefined) ? "" : (typeof v === "string" ? v.trim() : String(v));
+        const payload = {
+          origen: "landing-tanda-miranda",
+          paginaUrl: (typeof window !== "undefined" && window.location) ? window.location.href : "",
+          enviadoEn: new Date().toISOString(),
+          nombre: str(c.solNombre), apellidoPaterno: str(c.apPat), apellidoMaterno: str(c.apMat),
+          telefono: str(c.solTel), correo: str(c.solCorreo),
+          entidadNacimiento: str(c.entidadNac), fechaNacimiento: ((c.nacAnio && c.nacMes && c.nacDia) ? (c.nacAnio + "-" + String(c.nacMes).padStart(2, "0") + "-" + String(c.nacDia).padStart(2, "0")) : ""),
+          escolaridad: str(c.escolaridad), dependientes: str(c.dependientes),
+          ingresos: str(c.ingresos), gastos: str(c.gastosFijos), otrosIngresos: str(c.otrosIngresos),
+          empresa: str(c.solEmpresa), producto: str(c.solProducto),
+          monto: str(c.calcMonto), plazo: str(c.prestPlazo), uso: str(c.prestUso),
+          domicilio: str(c.domicilio), antiguedadDomicilio: str(c.antigDom),
+          direccion: { estado: str(c.domEstado), ciudad: str(c.domCiudad), cp: str(c.domCP), colonia: str(c.domColonia), calle: str(c.domCalle), numero: (str(c.domNumExt) + (str(c.domNumInt) ? " Int. " + str(c.domNumInt) : "")).trim() },
+          avisoPrivacidad: !!c.solAcepto,
+          captchaToken: captchaToken
+        };
+        envio.enCurso = true;
+        this.setState({ solEnviando: true, solErrMsg: "", solOk: false });
+        try {
+          const resp = await fetch(WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          if (!resp.ok) throw new Error("HTTP " + resp.status);
+          let folio = "";
+          try { const data = await resp.json(); if (data && data.folio) folio = String(data.folio); } catch (e) {}
+          if (typeof window !== "undefined") { window.__captchaToken = ""; if (window.turnstile && typeof window.turnstile.reset === "function") { try { window.turnstile.reset(); } catch (e) {} } }
+          envio.enCurso = false;
+          this.setState({ solEnviando: false, solOk: true, solFolio: folio, solErrMsg: "" });
+        } catch (err) {
+          envio.enCurso = false;
+          this.setState({ solEnviando: false, solOk: false, solTried: true, solErrMsg: "No pudimos enviar tu solicitud en este momento. Verifica tu conexión e inténtalo de nuevo en unos minutos." });
+        }
       },
       cat: p.catPromedio ?? "32.9%",
       tasa: p.tasaAnual ?? "24.9%",
@@ -1053,6 +1110,47 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+
+<script>
+  // Cloudflare Turnstile (anti-spam) — CONFIGURACIÓN
+  // 1) Pega tu Site Key de Turnstile. Vacío = Turnstile desactivado (el formulario funciona sin verificación).
+  // Bandera de "envío en curso", compartida con el formulario. Vive aquí porque
+  // el script del sistema de diseño se re-evalúa en cada render.
+  window.__tmEnvio = window.__tmEnvio || { enCurso: false };
+
+  window.__TURNSTILE_SITE_KEY = "";
+  window.__captchaToken = "";
+  window.onTurnstileSuccess = function (t) { window.__captchaToken = t || ""; };
+  window.onTurnstileReset = function () { window.__captchaToken = ""; };
+  (function () {
+    var KEY = window.__TURNSTILE_SITE_KEY;
+    if (!KEY) return;
+    var s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    s.async = true; s.defer = true;
+    (document.head || document.documentElement).appendChild(s);
+    function tryRender() {
+      var el = document.getElementById("tm-turnstile");
+      if (!el || !window.turnstile || typeof window.turnstile.render !== "function") return;
+      if (el.getAttribute("data-tm-rendered") === "1" && el.querySelector("iframe")) return;
+      try {
+        el.innerHTML = "";
+        window.turnstile.render(el, {
+          sitekey: KEY,
+          callback: window.onTurnstileSuccess,
+          "expired-callback": window.onTurnstileReset,
+          "error-callback": window.onTurnstileReset,
+          "timeout-callback": window.onTurnstileReset
+        });
+        el.setAttribute("data-tm-rendered", "1");
+      } catch (e) {}
+    }
+    var obs = new MutationObserver(tryRender);
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+    var iv = setInterval(tryRender, 600);
+    setTimeout(function () { clearInterval(iv); }, 60000);
+  })();
 </script>
 </body>
 </html>
