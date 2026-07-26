@@ -49,6 +49,14 @@
     h1, h2, h3, p { text-wrap: pretty; }
     a { color: var(--tm-red-700); }
     a:hover { color: var(--tm-navy-900); }
+    /* Selector de plazo: si las opciones completas no caben en una sola línea,
+       se muestran solamente los números. */
+    .tm-plz-wrap { container-type: inline-size; container-name: tmplz; }
+    .tm-plz-num { display: none !important; }
+    @container tmplz (max-width: 500px) {
+      .tm-plz-full { display: none !important; }
+      .tm-plz-num { display: flex !important; }
+    }
   </style>
 </helmet>
 
@@ -457,11 +465,18 @@
                     <span style="font: var(--text-sm); color: var(--color-text-secondary)">Heredado de la calculadora · pago estimado <strong style="color: var(--tm-navy-900); font-variant-numeric: tabular-nums lining-nums">{{ pagoFmt }}</strong> {{ frecAdverb }}</span>
                   </div>
                   <div style="grid-column: 1 / -1; display: grid; gap: 8px; align-content: start">
-                    <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900)">Plazo del préstamo</label>
-                    <div role="radiogroup" aria-label="Plazo del préstamo" style="display: flex; flex-wrap: wrap; gap: 4px; background: var(--color-bg-muted); border-radius: 999px; padding: 5px">
-                      <sc-for list="{{ plazoPills }}" as="pz" hint-placeholder-count="5">
-                        <button type="button" role="radio" aria-checked="{{ pz.checked }}" onClick="{{ pz.pick }}" style="flex: 1 1 auto; border: none; cursor: pointer; border-radius: 999px; padding: 12px 16px; background: {{ pz.bg }}; color: {{ pz.color }}; font: {{ pz.font }}; letter-spacing: var(--label-tracking); white-space: nowrap; box-shadow: {{ pz.shadow }}">{{ pz.label }}</button>
-                      </sc-for>
+                    <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900)">Plazo del préstamo (en meses)</label>
+                    <div class="tm-plz-wrap">
+                      <div role="radiogroup" aria-label="Plazo del préstamo" class="tm-plz-full" style="display: flex; flex-wrap: wrap; gap: 4px; background: var(--color-bg-muted); border-radius: 999px; padding: 5px">
+                        <sc-for list="{{ plazoPills }}" as="pz" hint-placeholder-count="5">
+                          <button type="button" role="radio" aria-checked="{{ pz.checked }}" onClick="{{ pz.pick }}" style="flex: 1 1 auto; border: none; cursor: pointer; border-radius: 999px; padding: 12px 16px; background: {{ pz.bg }}; color: {{ pz.color }}; font: {{ pz.font }}; letter-spacing: var(--label-tracking); white-space: nowrap; box-shadow: {{ pz.shadow }}">{{ pz.label }}</button>
+                        </sc-for>
+                      </div>
+                      <div role="radiogroup" aria-label="Plazo del préstamo" class="tm-plz-num" style="display: flex; gap: 4px; background: var(--color-bg-muted); border-radius: 999px; padding: 5px">
+                        <sc-for list="{{ plazoPills }}" as="pz" hint-placeholder-count="5">
+                          <button type="button" role="radio" aria-checked="{{ pz.checked }}" onClick="{{ pz.pick }}" style="flex: 1 1 auto; border: none; cursor: pointer; border-radius: 999px; padding: 12px 8px; background: {{ pz.bg }}; color: {{ pz.color }}; font: {{ pz.font }}; letter-spacing: var(--label-tracking); white-space: nowrap; box-shadow: {{ pz.shadow }}">{{ pz.num }}</button>
+                        </sc-for>
+                      </div>
                     </div>
                     <span style="font: var(--text-xs); color: {{ plazoEcoColor }}">Elige un plazo para tu préstamo.</span>
                   </div>
@@ -565,11 +580,18 @@
       <div style="flex: 1 1 420px; background: #fff; border: 1px solid var(--color-border-default); border-radius: 20px; padding: 32px; display: grid; gap: 26px; align-content: start">
         <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Slider" label="Monto del crédito" min="{{ sliderMin }}" max="{{ sliderMax }}" step="{{ sliderStep }}" value="{{ calcMonto }}" onChange="{{ setMonto }}" format="{{ fmtMoney }}" hint-size="100%,70px"></x-import>
         <div style="display: grid; gap: 8px">
-          <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900)">Plazo</label>
-          <div role="radiogroup" aria-label="Plazo en meses" style="display: flex; flex-wrap: wrap; gap: 4px; background: var(--color-bg-muted); border-radius: 999px; padding: 5px">
-            <sc-for list="{{ calcPlazoPills }}" as="pz" hint-placeholder-count="5">
-              <button type="button" role="radio" aria-checked="{{ pz.checked }}" onClick="{{ pz.pick }}" style="flex: 1 1 auto; border: none; cursor: pointer; border-radius: 999px; padding: 12px 14px; background: {{ pz.bg }}; color: {{ pz.color }}; font: {{ pz.font }}; letter-spacing: var(--label-tracking); white-space: nowrap; box-shadow: {{ pz.shadow }}">{{ pz.label }}</button>
-            </sc-for>
+          <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900)">Plazo del préstamo (en meses)</label>
+          <div class="tm-plz-wrap">
+            <div role="radiogroup" aria-label="Plazo en meses" class="tm-plz-full" style="display: flex; flex-wrap: wrap; gap: 4px; background: var(--color-bg-muted); border-radius: 999px; padding: 5px">
+              <sc-for list="{{ calcPlazoPills }}" as="pz" hint-placeholder-count="5">
+                <button type="button" role="radio" aria-checked="{{ pz.checked }}" onClick="{{ pz.pick }}" style="flex: 1 1 auto; border: none; cursor: pointer; border-radius: 999px; padding: 12px 14px; background: {{ pz.bg }}; color: {{ pz.color }}; font: {{ pz.font }}; letter-spacing: var(--label-tracking); white-space: nowrap; box-shadow: {{ pz.shadow }}">{{ pz.label }}</button>
+              </sc-for>
+            </div>
+            <div role="radiogroup" aria-label="Plazo en meses" class="tm-plz-num" style="display: flex; gap: 4px; background: var(--color-bg-muted); border-radius: 999px; padding: 5px">
+              <sc-for list="{{ calcPlazoPills }}" as="pz" hint-placeholder-count="5">
+                <button type="button" role="radio" aria-checked="{{ pz.checked }}" onClick="{{ pz.pick }}" style="flex: 1 1 auto; border: none; cursor: pointer; border-radius: 999px; padding: 12px 8px; background: {{ pz.bg }}; color: {{ pz.color }}; font: {{ pz.font }}; letter-spacing: var(--label-tracking); white-space: nowrap; box-shadow: {{ pz.shadow }}">{{ pz.num }}</button>
+              </sc-for>
+            </div>
           </div>
         </div>
         <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.RadioGroup" legend="Frecuencia de pago" options="{{ frecOpts }}" value="{{ calcFrec }}" onChange="{{ setFrec }}" direction="row" hint-size="100%,80px"></x-import>
@@ -816,7 +838,7 @@ class Component extends DCLogic {
     s2.domicilio = full ? s2.domCalle + " " + s2.domNumExt + (String(s2.domNumInt ?? "").trim() ? " Int. " + s2.domNumInt : "") + ", Col. " + s2.domColonia + ", C.P. " + s2.domCP + ", " + s2.domCiudad + ", " + s2.domEstado : "";
     this.setState({ domCalle: s2.domCalle, domNumExt: s2.domNumExt, domNumInt: s2.domNumInt, domColonia: s2.domColonia, domCP: s2.domCP, domCiudad: s2.domCiudad, domEstado: s2.domEstado, domicilio: s2.domicilio });
   }
-  state = { slide: 0, nacDia: "", nacMes: "", nacAnio: "", antigNum: "", antigUnidad: "años", domCalle: "", domNumExt: "", domNumInt: "", domCiudadOtra: false, domColonia: "", domCP: "", domCiudad: "", domEstado: "", calcMonto: 25000, calcPlazo: 12, calcFrec: "quincenal", solNombre: "", solTel: "", solCorreo: "", solEmpresa: "", solProducto: "", solMonto: "", solAcepto: false, solOk: false, solErrMsg: "", solTried: false, solFlow: false, solStep: 0, apPat: "", apMat: "", entidadNac: "", fechaNac: "", escolaridad: "", dependientes: "", ingresos: "", otrosIngresos: "", gastosFijos: "", domicilio: "", antigDom: "", prestPlazo: "", prestUso: "" };
+  state = { slide: 0, nacDia: "", nacMes: "", nacAnio: "", antigNum: "", antigUnidad: "años", domCalle: "", domNumExt: "", domNumInt: "", domCiudadOtra: false, domColonia: "", domCP: "", domCiudad: "", domEstado: "", calcMonto: 30000, calcPlazo: 12, calcFrec: "quincenal", solNombre: "", solTel: "", solCorreo: "", solEmpresa: "", solProducto: "", solMonto: "", solAcepto: false, solOk: false, solErrMsg: "", solTried: false, solFlow: false, solStep: 0, apPat: "", apMat: "", entidadNac: "", fechaNac: "", escolaridad: "", dependientes: "", ingresos: "", otrosIngresos: "", gastosFijos: "", domicilio: "", antigDom: "", prestPlazo: "", prestUso: "" };
   renderVals() {
     const p = this.props;
     const s = this.state.slide;
@@ -960,7 +982,7 @@ class Component extends DCLogic {
       slideCounter: (s + 1) + " de 2",
       sliderMin: 20000,
       sliderMax: 100000,
-      sliderStep: 1000,
+      sliderStep: 10000,
       calcMonto: st.calcMonto,
       calcMontoFmt: money0(st.calcMonto),
       calcPlazo: st.calcPlazo,
@@ -977,7 +999,7 @@ class Component extends DCLogic {
       plazoPills: String(p.plazosCredito ?? "12, 24, 36, 48, 60").split(/[,;]/).map((t) => parseInt(t.trim(), 10)).filter((n2) => n2 > 0).map((n2) => {
         const sel = Number(st.prestPlazo) === n2;
         return {
-          label: n2 + " MESES", checked: sel, pick: () => this.setState({ prestPlazo: n2 }),
+          label: n2 + " MESES", num: String(n2), checked: sel, pick: () => this.setState({ prestPlazo: n2 }),
           bg: sel ? "#fff" : "transparent",
           color: sel ? "var(--tm-navy-900)" : "var(--color-text-secondary)",
           font: (sel ? "700" : "600") + " 14px/1.2 var(--font-sans)",
@@ -988,7 +1010,7 @@ class Component extends DCLogic {
       calcPlazoPills: String(p.plazosCredito ?? "12, 24, 36, 48, 60").split(/[,;]/).map((t) => parseInt(t.trim(), 10)).filter((n2) => n2 > 0).map((n2) => {
         const sel = Number(st.calcPlazo) === n2;
         return {
-          label: n2 + " MESES", checked: sel, pick: () => this.setState({ calcPlazo: n2 }),
+          label: n2 + " MESES", num: String(n2), checked: sel, pick: () => this.setState({ calcPlazo: n2 }),
           bg: sel ? "#fff" : "transparent",
           color: sel ? "var(--tm-navy-900)" : "var(--color-text-secondary)",
           font: (sel ? "700" : "600") + " 13px/1.2 var(--font-sans)",
