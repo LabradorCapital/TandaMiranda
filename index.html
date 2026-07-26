@@ -133,7 +133,7 @@
         </div>
         <div style="border-top: 1px solid var(--color-border-default)"></div>
         <div style="display: grid; gap: 12px">
-        <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Montos</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">$20,000.00 a $100,000.00 MXN</strong></div>
+        <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Montos</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">$20,000 a $100,000 MXN</strong></div>
         <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Plazos</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">12, 24, 36, 48 y 60 meses</strong></div>
         <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Frecuencia de pago</span><strong style="color: var(--tm-navy-900); text-align: right">Semanal, quincenal o mensual</strong></div>
         <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Tasa de interés ordinaria anual fija</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">{{ tasa }}</strong></div>
@@ -191,7 +191,7 @@
         </div>
         <div style="border-top: 1px solid var(--color-border-default)"></div>
         <div style="display: grid; gap: 12px">
-        <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Montos</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">$20,000.00 a $100,000.00 MXN</strong></div>
+        <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Montos</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">$20,000 a $100,000 MXN</strong></div>
         <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Plazos</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">12, 24, 36, 48 y 60 meses</strong></div>
         <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Frecuencia de pago</span><strong style="color: var(--tm-navy-900); text-align: right">Semanal, quincenal o mensual</strong></div>
         <div style="display: flex; justify-content: space-between; gap: 16px; font: var(--text-body-sm)"><span style="color: var(--color-text-secondary)">Tasa de interés ordinaria anual fija</span><strong style="color: var(--tm-navy-900); text-align: right; font-variant-numeric: tabular-nums lining-nums">{{ tasa }}</strong></div>
@@ -384,18 +384,18 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 20px">
                   <div style="display: grid; gap: 8px; align-content: start">
                     <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900); min-height: 37px; display: flex; align-items: flex-end">Ingresos mensuales</label>
-                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ ingresos }}" onChange="{{ onIngresos }}" invalid="{{ vIngresos }}" placeholder="$5,000.00" full-width="{{ true }}" aria-label="Ingresos mensuales" hint-size="100%,44px"></x-import>
-                    <span style="font: var(--text-xs); color: var(--color-text-secondary)">(Cantidades completas, ejemplo: $5,000.00)</span>
+                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ ingresos }}" onChange="{{ onIngresos }}" invalid="{{ vIngresos }}" placeholder="$5,000" full-width="{{ true }}" aria-label="Ingresos mensuales" hint-size="100%,44px"></x-import>
+                    <span style="font: var(--text-xs); color: var(--color-text-secondary)">(Cantidades completas, ejemplo: $5,000)</span>
                   </div>
                   <div style="display: grid; gap: 8px; align-content: start">
                     <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900); min-height: 37px; display: flex; align-items: flex-end">¿A cuánto ascienden sus gastos fijos mensuales?</label>
-                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ gastosFijos }}" onChange="{{ onGastosFijos }}" invalid="{{ vGastos }}" placeholder="$5,000.00" full-width="{{ true }}" aria-label="Gastos fijos mensuales" hint-size="100%,44px"></x-import>
-                    <span style="font: var(--text-xs); color: var(--color-text-secondary)">(Cantidades completas, ejemplo: $5,000.00)</span>
+                    <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ gastosFijos }}" onChange="{{ onGastosFijos }}" invalid="{{ vGastos }}" placeholder="$5,000" full-width="{{ true }}" aria-label="Gastos fijos mensuales" hint-size="100%,44px"></x-import>
+                    <span style="font: var(--text-xs); color: var(--color-text-secondary)">(Cantidades completas, ejemplo: $5,000)</span>
                   </div>
                 </div>
                 <div style="display: grid; gap: 8px">
                   <label style="font: 600 14px/1.3 var(--font-sans); color: var(--tm-navy-900)">¿Cuenta con otros ingresos propios? Especifique tipo, monto y periodicidad en su caso. <span style="font-weight: 400; color: var(--color-text-secondary)">(opcional)</span></label>
-                  <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ otrosIngresos }}" onChange="{{ onOtrosIngresos }}" placeholder="Ej. Renta, $2,000.00 mensuales" full-width="{{ true }}" aria-label="Otros ingresos propios" hint-size="100%,44px"></x-import>
+                  <x-import component-from-global-scope="TandaMirandaDesignSystem_a4a6f5.Input" value="{{ otrosIngresos }}" onChange="{{ onOtrosIngresos }}" placeholder="Ej. Renta, $2,000 mensuales" full-width="{{ true }}" aria-label="Otros ingresos propios" hint-size="100%,44px"></x-import>
                 </div>
               </div>
             </sc-if>
@@ -829,7 +829,7 @@ class Component extends DCLogic {
     const rP = tasaNum / 100 / fpy;
     const pago = st.calcMonto * rP / (1 - Math.pow(1 + rP, -nPagos));
     const money0 = (v) => "$" + Math.round(v).toLocaleString("es-MX");
-    const money2 = (v) => v.toLocaleString("es-MX", { style: "currency", currency: "MXN", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const moneyMXN = (v) => v.toLocaleString("es-MX", { style: "currency", currency: "MXN", minimumFractionDigits: 0, maximumFractionDigits: 0 });
     const errsAll = this.validate();
     const tried = st.solTried;
     const fx = {};
@@ -969,8 +969,8 @@ class Component extends DCLogic {
       setPlazo: (v) => this.setState({ calcPlazo: v }),
       setFrec: (v) => this.setState({ calcFrec: v }),
       fmtMoney: money0,
-      pagoFmt: money2(pago),
-      totalFmt: money2(pago * nPagos),
+      pagoFmt: moneyMXN(pago),
+      totalFmt: moneyMXN(pago * nPagos),
       numPagos: nPagos,
       frecAdverb: { semanal: "cada semana", quincenal: "cada quincena", mensual: "cada mes" }[st.calcFrec],
       plazoOpts: String(p.plazosCredito ?? "12, 24, 36, 48, 60").split(/[,;]/).map((t) => parseInt(t.trim(), 10)).filter((n2) => n2 > 0).map((n2) => ({ value: n2, label: n2 + " meses" })),
