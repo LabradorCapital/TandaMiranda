@@ -478,7 +478,7 @@
                         </sc-for>
                       </div>
                     </div>
-                    <span style="font: var(--text-xs); color: {{ plazoEcoColor }}">Elige un plazo para tu préstamo.</span>
+                    <span style="font: var(--text-xs); color: var(--color-text-secondary)">Heredado de la calculadora · puedes cambiarlo y el pago estimado se actualiza.</span>
                   </div>
                   <div style="grid-column: 1 / -1; display: grid; grid-template-columns: minmax(140px, 1fr) minmax(200px, 1.6fr); gap: 20px">
                     <div style="display: grid; gap: 8px; align-content: start">
@@ -826,12 +826,11 @@ class Component extends DCLogic {
     if (!st.domCiudad.trim()) errs.domCiudad = 1;
     if (!st.domEstado) errs.domEstado = 1;
     if (!String(st.antigDom).trim() || !(Number(st.antigNum) > 0)) errs.antigDom = 1;
-    if (!st.prestPlazo) errs.prestPlazo = 1;
     if (!String(st.prestUso).trim()) errs.prestUso = 1;
     if (!st.solAcepto) errs.solAcepto = 1;
     return errs;
   }
-  stepKeys = [["solNombre", "apPat", "apMat", "entidadNac", "fechaNac", "dependientes", "escolaridad"], ["ingresos", "gastosFijos"], ["domCalle", "domNumExt", "domColonia", "domCP", "domCiudad", "domEstado", "antigDom"], ["prestPlazo", "prestUso", "solTel", "solCorreo"], []];
+  stepKeys = [["solNombre", "apPat", "apMat", "entidadNac", "fechaNac", "dependientes", "escolaridad"], ["ingresos", "gastosFijos"], ["domCalle", "domNumExt", "domColonia", "domCP", "domCiudad", "domEstado", "antigDom"], ["prestUso", "solTel", "solCorreo"], []];
   setDomPart(part, raw) {
     const v = raw && raw.target !== undefined ? raw.target.value : raw;
     const s2 = { ...this.state, [part]: v };
@@ -848,7 +847,7 @@ class Component extends DCLogic {
     s2.domicilio = full ? s2.domCalle + " " + s2.domNumExt + (String(s2.domNumInt ?? "").trim() ? " Int. " + s2.domNumInt : "") + ", Col. " + s2.domColonia + ", C.P. " + s2.domCP + ", " + s2.domCiudad + ", " + s2.domEstado : "";
     this.setState({ domCalle: s2.domCalle, domNumExt: s2.domNumExt, domNumInt: s2.domNumInt, domColonia: s2.domColonia, domCP: s2.domCP, domCiudad: s2.domCiudad, domEstado: s2.domEstado, domicilio: s2.domicilio });
   }
-  state = { slide: 0, nacDia: "", nacMes: "", nacAnio: "", antigNum: "", antigUnidad: "años", domCalle: "", domNumExt: "", domNumInt: "", domCiudadOtra: false, domColonia: "", domCP: "", domCiudad: "", domEstado: "", calcMonto: 30000, calcPlazo: 12, calcFrec: "quincenal", solNombre: "", solTel: "", solCorreo: "", solEmpresa: "", solProducto: "", solMonto: "", solAcepto: false, solOk: false, solErrMsg: "", solTried: false, solFlow: false, solStep: 0, solEnviando: false, solFolio: "", apPat: "", apMat: "", entidadNac: "", fechaNac: "", escolaridad: "", dependientes: "", ingresos: "", otrosIngresos: "", gastosFijos: "", domicilio: "", antigDom: "", prestPlazo: "", prestUso: "" };
+  state = { slide: 0, nacDia: "", nacMes: "", nacAnio: "", antigNum: "", antigUnidad: "años", domCalle: "", domNumExt: "", domNumInt: "", domCiudadOtra: false, domColonia: "", domCP: "", domCiudad: "", domEstado: "", calcMonto: 30000, calcPlazo: 12, calcFrec: "quincenal", solNombre: "", solTel: "", solCorreo: "", solEmpresa: "", solProducto: "", solMonto: "", solAcepto: false, solOk: false, solErrMsg: "", solTried: false, solFlow: false, solStep: 0, solEnviando: false, solFolio: "", apPat: "", apMat: "", entidadNac: "", fechaNac: "", escolaridad: "", dependientes: "", ingresos: "", otrosIngresos: "", gastosFijos: "", domicilio: "", antigDom: "", prestUso: "" };
   renderVals() {
     const p = this.props;
     const s = this.state.slide;
@@ -884,7 +883,7 @@ class Component extends DCLogic {
     fx.showFaltan = !!(tried && st.solStep < 4 && this.stepKeys[st.solStep].some((k) => errsAll[k]));
     fx.stepFaltanMsg = "Este paso tiene campos pendientes o inválidos.";
     const pesosEnteros = (v) => String(v ?? "").split(".")[0].replace(/[^\d,$\s]/g, "");
-    ["apPat", "apMat", "entidadNac", "fechaNac", "escolaridad", "dependientes", "ingresos", "otrosIngresos", "gastosFijos", "domicilio", "antigDom", "prestPlazo", "prestUso"].forEach((k) => {
+    ["apPat", "apMat", "entidadNac", "fechaNac", "escolaridad", "dependientes", "ingresos", "otrosIngresos", "gastosFijos", "domicilio", "antigDom", "prestUso"].forEach((k) => {
       const esMonto = k === "ingresos" || k === "gastosFijos";
       fx[k] = st[k] ?? "";
       fx["on" + k.charAt(0).toUpperCase() + k.slice(1)] = (e) => this.setState({ [k]: esMonto ? pesosEnteros(ev(e)) : ev(e) });
@@ -1010,16 +1009,15 @@ class Component extends DCLogic {
       frecAdverb: { semanal: "cada semana", quincenal: "cada quincena", mensual: "cada mes" }[st.calcFrec],
       plazoOpts: String(p.plazosCredito ?? "12, 24, 36, 48, 60").split(/[,;]/).map((t) => parseInt(t.trim(), 10)).filter((n2) => n2 > 0).map((n2) => ({ value: n2, label: n2 + " meses" })),
       plazoPills: String(p.plazosCredito ?? "12, 24, 36, 48, 60").split(/[,;]/).map((t) => parseInt(t.trim(), 10)).filter((n2) => n2 > 0).map((n2) => {
-        const sel = Number(st.prestPlazo) === n2;
+        const sel = Number(st.calcPlazo) === n2;
         return {
-          label: n2 + " MESES", num: String(n2), checked: sel, pick: () => this.setState({ prestPlazo: n2 }),
+          label: n2 + " MESES", num: String(n2), checked: sel, pick: () => this.setState({ calcPlazo: n2 }),
           bg: sel ? "#fff" : "transparent",
           color: sel ? "var(--tm-navy-900)" : "var(--color-text-secondary)",
           font: (sel ? "700" : "600") + " 14px/1.2 var(--font-sans)",
           shadow: sel ? "0 1px 4px rgba(15,29,65,0.18)" : "none"
         };
       }),
-      plazoEcoColor: tried && errsAll.prestPlazo ? "var(--tm-red-700)" : "var(--color-text-secondary)",
       calcPlazoPills: String(p.plazosCredito ?? "12, 24, 36, 48, 60").split(/[,;]/).map((t) => parseInt(t.trim(), 10)).filter((n2) => n2 > 0).map((n2) => {
         const sel = Number(st.calcPlazo) === n2;
         return {
@@ -1030,7 +1028,7 @@ class Component extends DCLogic {
           shadow: sel ? "0 1px 4px rgba(15,29,65,0.18)" : "none"
         };
       }),
-      prestPlazoLabel: st.prestPlazo ? st.prestPlazo + " meses" : "—",
+      prestPlazoLabel: st.calcPlazo ? st.calcPlazo + " meses" : "—",
       frecOpts: [{ value: "semanal", label: "Semanal" }, { value: "quincenal", label: "Quincenal" }, { value: "mensual", label: "Mensual" }],
       productoOpts: [{ value: "nomina", label: "Crédito por Nómina" }, { value: "simple", label: "Crédito Simple" }, { value: "descuento", label: "Descuento por Nómina" }],
       montoHelp: "Sugerido por tu cálculo: " + money0(st.calcMonto),
@@ -1075,7 +1073,7 @@ class Component extends DCLogic {
           escolaridad: str(c.escolaridad), dependientes: str(c.dependientes),
           ingresos: str(c.ingresos), gastos: str(c.gastosFijos), otrosIngresos: str(c.otrosIngresos),
           empresa: str(c.solEmpresa), producto: str(c.solProducto),
-          monto: str(c.calcMonto), plazo: str(c.prestPlazo), uso: str(c.prestUso),
+          monto: str(c.calcMonto), plazo: str(c.calcPlazo), uso: str(c.prestUso),
           domicilio: str(c.domicilio), antiguedadDomicilio: str(c.antigDom),
           direccion: { estado: str(c.domEstado), ciudad: str(c.domCiudad), cp: str(c.domCP), colonia: str(c.domColonia), calle: str(c.domCalle), numero: (str(c.domNumExt) + (str(c.domNumInt) ? " Int. " + str(c.domNumInt) : "")).trim() },
           avisoPrivacidad: !!c.solAcepto,
