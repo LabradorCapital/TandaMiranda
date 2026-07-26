@@ -1,0 +1,30 @@
+{
+  "name": "La Tanda Miranda — Crédito por nómina",
+  "short_name": "Tanda Miranda",
+  "description": "Crédito justo y fácil con descuento por nómina para trabajadores formales en México. SOFOM E.N.R.",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0F1D41",
+  "categories": [
+    "finance",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

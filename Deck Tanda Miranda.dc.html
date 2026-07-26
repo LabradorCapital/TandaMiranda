@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/tokens/primitives.css">
+  <link rel="stylesheet" href="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/styles.css">
+  <script src="_ds/tanda-miranda-design-system-a4a6f5d4-b8b8-4853-afed-439a18511527/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; font-family: "Noto Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  </style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Portada" data-speaker-notes="Bienvenida. Presentar a La Tanda Miranda como SOFOM de crédito por nómina para trabajadores formales." style="position: relative; overflow: hidden; background: #0F1D41">
+    <img src="assets/dreamer-night-sky.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 28%">
+    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,29,65,0.94) 0%, rgba(15,29,65,0.6) 55%, rgba(15,29,65,0.25) 100%)"></div>
+    <div style="position: relative; height: 100%; box-sizing: border-box; padding: 90px 120px; display: flex; flex-direction: column; justify-content: space-between">
+      <img src="assets/tm-logo-horizontal-blanco.svg" alt="La Tanda Miranda" style="height: 48px; align-self: flex-start">
+      <div style="display: grid; gap: 30px; justify-items: start; max-width: 1100px">
+        <div style="font: 700 26px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: rgba(255,255,255,0.78)">CRÉDITO POR NÓMINA PARA TRABAJADORES</div>
+        <h1 style="margin: 0; font: italic 400 96px/1.12 'Libre Baskerville', Georgia, serif; color: #fff">¡Tu crédito, ágil y <em style="font-style: inherit; color: #ED1C24">transparente</em>!</h1>
+        <p style="margin: 0; max-width: 850px; font: 400 34px/1.5 'Noto Sans', sans-serif; color: rgba(255,255,255,0.9)">Financiamiento seguro con cobro directo a tu recibo de nómina.</p>
+      </div>
+      <p style="margin: 0; font: 400 24px/1.4 'Noto Sans', sans-serif; color: rgba(255,255,255,0.66)">La Tanda Miranda, S.A. de C.V., SOFOM, E.N.R. — inscrita en el SIPRES de la CONDUSEF.</p>
+    </div>
+  </section>
+
+  <section data-label="Beneficios" data-speaker-notes="Cuatro diferenciadores: cobro automático, claridad de costos, cercanía regional y flexibilidad." style="background: #fff; box-sizing: border-box; height: 100%; padding: 100px 120px; display: flex; flex-direction: column">
+    <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">LA ÚNICA TANDA DONDE SIEMPRE ERES EL NO.1</div>
+    <h2 style="margin: 18px 0 0; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #0F1D41">Beneficios del crédito por nómina</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px; margin-top: 100px">
+      <div style="display: grid; gap: 22px; align-content: start; justify-items: start">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18M9 15.7l2 2 4-4.2"></path></svg>
+        <h3 style="margin: 0; font: 700 32px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Pago automático</h3>
+        <p style="margin: 0; font: 400 27px/1.45 'Noto Sans', sans-serif; color: #4A5468">Descuento directo vía nómina, sin fechas de corte ni filas.</p>
+      </div>
+      <div style="display: grid; gap: 22px; align-content: start; justify-items: start">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9L14 3Z"></path><path d="M14 3v6h6M9 13.5h6M9 17h4"></path></svg>
+        <h3 style="margin: 0; font: 700 32px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Sin letras chiquitas</h3>
+        <p style="margin: 0; font: 400 27px/1.45 'Noto Sans', sans-serif; color: #4A5468">Esquemas claros de comisiones e intereses, desde el primer día.</p>
+      </div>
+      <div style="display: grid; gap: 22px; align-content: start; justify-items: start">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21S3.6 15.7 2.8 11a5.4 5.4 0 0 1 9.2-4.6A5.4 5.4 0 0 1 21.2 11C20.4 15.7 12 21 12 21Z"></path></svg>
+        <h3 style="margin: 0; font: 700 32px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Atención cercana</h3>
+        <p style="margin: 0; font: 400 27px/1.45 'Noto Sans', sans-serif; color: #4A5468">Respuesta rápida y servicio personalizado en la región.</p>
+      </div>
+      <div style="display: grid; gap: 22px; align-content: start; justify-items: start">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path><circle cx="9" cy="6" r="2.2"></circle><circle cx="15" cy="12" r="2.2"></circle><circle cx="8" cy="18" r="2.2"></circle></svg>
+        <h3 style="margin: 0; font: 700 32px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Flexibilidad de pagos</h3>
+        <p style="margin: 0; font: 400 27px/1.45 'Noto Sans', sans-serif; color: #4A5468">Esquemas adaptados a tu capacidad real de pago.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Crédito por Nómina" data-speaker-notes="Producto principal: montos, plazos, prepago sin costo. Los valores de CAT, tasa y comisión son ilustrativos." style="background: #0F1D41; box-sizing: border-box; height: 100%; padding: 100px 120px; display: flex; align-items: center; gap: 90px">
+    <div style="flex: 1 1 0; display: grid; gap: 34px; justify-items: start">
+      <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: rgba(255,255,255,0.7)">PRODUCTOS FINANCIEROS</div>
+      <h2 style="margin: 0; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #fff">Crédito por Nómina <span style="font: italic 400 60px/1.15 'Libre Baskerville', Georgia, serif">“Tanda Miranda”</span></h2>
+      <p style="margin: 0; font: 400 30px/1.5 'Noto Sans', sans-serif; color: rgba(255,255,255,0.8)">Atiende imprevistos, consolida deudas o financia tus metas personales con deducción por nómina.</p>
+      <div style="display: grid; gap: 26px; margin-top: 10px">
+        <div style="display: flex; gap: 20px; align-items: flex-start">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f0565c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 30px/1.4 'Noto Sans', sans-serif; color: #fff"><strong>Montos</strong> desde $3,000 hasta $100,000 MXN.</p>
+        </div>
+        <div style="display: flex; gap: 20px; align-items: flex-start">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f0565c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 30px/1.4 'Noto Sans', sans-serif; color: #fff"><strong>Plazos</strong> semanales, quincenales o mensuales, de 6 a 36 meses.</p>
+        </div>
+        <div style="display: flex; gap: 20px; align-items: flex-start">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f0565c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 30px/1.4 'Noto Sans', sans-serif; color: #fff"><strong>Sin penalización por prepago:</strong> liquida anticipado sin costo.</p>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 0 0 560px; background: #fff; border-radius: 24px; padding: 56px; display: grid; gap: 26px; box-sizing: border-box">
+      <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #4A5468">COSTOS E INFORMACIÓN FINANCIERA</div>
+      <div style="display: grid; gap: 10px">
+        <div style="font: 700 110px/1 'Noto Sans', sans-serif; font-variant-numeric: tabular-nums lining-nums; color: #0F1D41">32.9%</div>
+        <div style="font: 400 26px/1.4 'Noto Sans', sans-serif; color: #4A5468">CAT promedio sin IVA · informativo y de comparación</div>
+      </div>
+      <div style="border-top: 2px solid #E2E5EC"></div>
+      <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Tasa anual fija</span><strong style="color: #0F1D41">24.9%</strong></div>
+      <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Comisión por apertura</span><strong style="color: #0F1D41">2.5%</strong></div>
+      <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Pago anticipado</span><strong style="color: #0F1D41">Sin penalización</strong></div>
+      <p style="margin: 0; font: italic 400 24px/1.4 'Noto Sans', sans-serif; color: #4A5468">*Valores ilustrativos: sustituir por los vigentes registrados ante la CONDUSEF.</p>
+    </div>
+  </section>
+
+  <section data-label="Descuento por Nómina" data-speaker-notes="Producto Descuento por Nómina: requisitos de contratación y características. No genera comisiones." style="background: #fff; box-sizing: border-box; height: 100%; padding: 100px 120px; display: flex; flex-direction: column">
+    <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">CONTRATACIÓN</div>
+    <h2 style="margin: 18px 0 0; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #0F1D41">Descuento por Nómina <span style="font: italic 400 60px/1.15 'Libre Baskerville', Georgia, serif">“Tanda Miranda”</span></h2>
+    <div style="display: flex; gap: 90px; margin-top: 70px; align-items: flex-start">
+      <div style="flex: 1 1 0; display: grid; gap: 28px">
+        <h3 style="margin: 0; font: 700 34px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Requisitos para la contratación</h3>
+        <div style="display: flex; gap: 18px; align-items: flex-start">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 29px/1.4 'Noto Sans', sans-serif; color: #0F1D41">18 años cumplidos.</p>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 29px/1.4 'Noto Sans', sans-serif; color: #0F1D41">Identificación oficial vigente.</p>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 29px/1.4 'Noto Sans', sans-serif; color: #0F1D41">Antigüedad mínima de 1 año en tu actual empleo.</p>
+        </div>
+        <div style="display: flex; gap: 18px; align-items: flex-start">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.3 2.3 2.3 4.7-4.9"></path></svg>
+          <p style="margin: 0; font: 400 29px/1.4 'Noto Sans', sans-serif; color: #0F1D41">Buen historial crediticio y capacidad de pago.</p>
+        </div>
+        <p style="margin: 12px 0 0; font: 400 25px/1.45 'Noto Sans', sans-serif; color: #4A5468">Unidad monetaria: pesos mexicanos (MXN), cobertura en toda la República Mexicana.</p>
+        <p style="margin: 0; font: 400 25px/1.45 'Noto Sans', sans-serif; color: #4A5468">Forma para no aceptar productos o servicios adicionales: <strong style="color: #0F1D41">XXXXXXX</strong>.</p>
+      </div>
+      <div style="flex: 0 0 660px; border: 2px solid #E2E5EC; border-radius: 24px; padding: 48px; display: grid; gap: 24px; box-sizing: border-box">
+        <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #4A5468">CARACTERÍSTICAS DEL PRODUCTO</div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Montos</span><strong style="color: #0F1D41; text-align: right">$5,000.00 a $10,000.00 MXN</strong></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Plazos</span><strong style="color: #0F1D41; text-align: right">12, 24, 36 y 48 meses</strong></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Frecuencia de pago</span><strong style="color: #0F1D41; text-align: right">Semanal, quincenal o mensual</strong></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Tasa ordinaria anual fija</span><strong style="color: #0F1D41; text-align: right">xxx% sin IVA</strong></div>
+        <div style="display: flex; justify-content: space-between; gap: 24px; font: 400 28px/1.4 'Noto Sans', sans-serif"><span style="color: #4A5468">Comisiones</span><strong style="color: #0F1D41; text-align: right">No genera</strong></div>
+        <div style="border-top: 2px solid #E2E5EC"></div>
+        <p style="margin: 0; font: 700 25px/1.5 'Noto Sans', sans-serif; color: #0F1D41">CAT promedio: xxxx% sin IVA, para fines informativos y de comparación. Vigencia de la oferta: xxxxxx del 2022.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Seguro obligatorio" data-speaker-notes="Requisito de contratación: seguro de vida e invalidez por saldos insolutos, con La Tanda Miranda como beneficiario principal." style="background: #F4F2ED; box-sizing: border-box; height: 100%; padding: 100px 160px; display: flex; flex-direction: column; justify-content: center; gap: 40px">
+    <div style="display: flex; align-items: center; gap: 20px">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 10v4M12 17.2v.3"></path></svg>
+      <span style="font: 700 28px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">IMPORTANTE — SEGURO DE VIDA E INVALIDEZ</span>
+    </div>
+    <p style="margin: 0; max-width: 1440px; font: 400 38px/1.55 'Noto Sans', sans-serif; color: #0F1D41">Para contratar el Descuento por Nómina necesitas un seguro de vida e invalidez por saldos insolutos. Las pólizas deberán expedirse a nombre de <strong>“EL CLIENTE”</strong>, señalando como beneficiario principal a <strong>LA TANDA MIRANDA</strong>.</p>
+    <p style="margin: 0; max-width: 1360px; font: 400 30px/1.5 'Noto Sans', sans-serif; color: #4A5468">“EL CLIENTE” deberá entregar a LA TANDA MIRANDA las pólizas, los endosos y los recibos de pago de primas correspondientes.</p>
+  </section>
+
+  <section data-label="Requisitos de solicitud" data-speaker-notes="Documentos para solicitar: INE, comprobante de domicilio, recibos de nómina y estado de cuenta con CLABE." style="background: #F4F2ED; box-sizing: border-box; height: 100%; padding: 80px 120px; display: flex; gap: 64px; align-items: stretch">
+    <sc-if value="{{ mostrarFoto }}" hint-placeholder-val="{{ true }}">
+      <img src="assets/team-badges.jpg" alt="Credenciales de colaboradores Tanda Miranda" style="flex: 0 0 540px; width: 540px; min-width: 0; border-radius: 28px; object-fit: cover; min-height: 100%">
+    </sc-if>
+    <div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 26px">
+      <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">DOCUMENTACIÓN</div>
+      <h2 style="margin: 0 0 14px; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #0F1D41">Requisitos de solicitud</h2>
+      <div style="background: #fff; border-radius: 20px; padding: 30px 36px; display: flex; gap: 22px; align-items: center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="2.5" y="5" width="19" height="14" rx="2"></rect><circle cx="8.5" cy="11" r="2"></circle><path d="M5.5 16.5c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4M14.5 9.5H19M14.5 13h3"></path></svg>
+        <p style="margin: 0; font-family: 'Noto Sans', sans-serif; font-weight: 400; font-size: {{ textoReq }}px; line-height: 1.4; color: #0F1D41"><strong>Identificación oficial vigente:</strong> INE o pasaporte.</p>
+      </div>
+      <div style="background: #fff; border-radius: 20px; padding: 30px 36px; display: flex; gap: 22px; align-items: center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m3 11 9-7 9 7"></path><path d="M5 9.5V20h14V9.5"></path><path d="M10 20v-6h4v6"></path></svg>
+        <p style="margin: 0; font-family: 'Noto Sans', sans-serif; font-weight: 400; font-size: {{ textoReq }}px; line-height: 1.4; color: #0F1D41"><strong>Comprobante de domicilio:</strong> máximo 3 meses.</p>
+      </div>
+      <div style="background: #fff; border-radius: 20px; padding: 30px 36px; display: flex; gap: 22px; align-items: center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M6 2.5h12V21l-2-1.4-2 1.4-2-1.4-2 1.4-2-1.4-2 1.4Z"></path><path d="M9 7h6M9 10.5h6M9 14h4"></path></svg>
+        <p style="margin: 0; font-family: 'Noto Sans', sans-serif; font-weight: 400; font-size: {{ textoReq }}px; line-height: 1.4; color: #0F1D41"><strong>Comprobante de ingresos:</strong> últimos 2 a 3 recibos de nómina timbrados.</p>
+      </div>
+      <div style="background: #fff; border-radius: 20px; padding: 30px 36px; display: flex; gap: 22px; align-items: center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m3 9 9-6 9 6H3Z"></path><path d="M5 9v8M9.5 9v8M14.5 9v8M19 9v8M3 20.5h18"></path></svg>
+        <p style="margin: 0; font-family: 'Noto Sans', sans-serif; font-weight: 400; font-size: {{ textoReq }}px; line-height: 1.4; color: #0F1D41"><strong>Estado de cuenta bancario:</strong> con CLABE interbancaria visible.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Proceso de solicitud" data-speaker-notes="Tres pasos: captura, evaluación y disposición de fondos al firmar contrato." style="background: #fff; box-sizing: border-box; height: 100%; padding: 100px 120px; display: flex; flex-direction: column">
+    <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">ASÍ DE FÁCIL</div>
+    <h2 style="margin: 18px 0 0; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #0F1D41">Tu crédito en 3 pasos</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; margin-top: 110px">
+      <div style="border-top: 5px solid #ED1C24; padding-top: 36px; display: grid; gap: 18px; align-content: start">
+        <div style="font: 700 26px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">PASO 1</div>
+        <h3 style="margin: 0; font: 700 38px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Captura tu solicitud</h3>
+        <p style="margin: 0; font: 400 28px/1.5 'Noto Sans', sans-serif; color: #4A5468">Ingresa tus datos en línea o visítanos en nuestra sucursal.</p>
+      </div>
+      <div style="border-top: 5px solid #ED1C24; padding-top: 36px; display: grid; gap: 18px; align-content: start">
+        <div style="font: 700 26px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">PASO 2</div>
+        <h3 style="margin: 0; font: 700 38px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Evaluación de crédito</h3>
+        <p style="margin: 0; font: 400 28px/1.5 'Noto Sans', sans-serif; color: #4A5468">Validamos tu información y tu capacidad de pago.</p>
+      </div>
+      <div style="border-top: 5px solid #ED1C24; padding-top: 36px; display: grid; gap: 18px; align-content: start">
+        <div style="font: 700 26px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">PASO 3</div>
+        <h3 style="margin: 0; font: 700 38px/1.25 'Noto Sans', sans-serif; color: #0F1D41">Disposición de fondos</h3>
+        <p style="margin: 0; font: 400 28px/1.5 'Noto Sans', sans-serif; color: #4A5468">Transferencia directa a tu cuenta al firmar tu contrato.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Marco regulatorio" data-speaker-notes="Entidad No Regulada inscrita en SIPRES. Consultas en Buró de Entidades Financieras y CONDUSEF. Leyendas de ley obligatorias." style="background: #fff; box-sizing: border-box; height: 100%; padding: 100px 120px; display: flex; flex-direction: column">
+    <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">TRANSPARENCIA</div>
+    <h2 style="margin: 18px 0 0; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #0F1D41">Marco regulatorio</h2>
+    <div style="display: flex; gap: 80px; margin-top: 60px; align-items: flex-start">
+      <div style="flex: 1 1 0; display: grid; gap: 34px">
+        <p style="margin: 0; font: 400 27px/1.55 'Noto Sans', sans-serif; color: #4A5468"><strong style="color: #0F1D41">La Tanda Miranda, S.A. de C.V., SOFOM, E.N.R.</strong> es una Entidad No Regulada inscrita en el SIPRES de la CONDUSEF. No requiere autorización de la SHCP para su constitución y operación; está supervisada por la CNBV únicamente en materia de prevención de lavado de dinero (Art. 95-Bis, LGOAAC).</p>
+        <div style="border: 2px solid rgba(237,28,36,0.6); border-radius: 20px; padding: 36px; display: grid; gap: 18px">
+          <div style="display: flex; align-items: center; gap: 16px">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 10v4M12 17.2v.3"></path></svg>
+            <span style="font: 700 25px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #0F1D41">CUIDADO — LEYENDAS DE LEY</span>
+          </div>
+          <p style="margin: 0; font: 400 27px/1.45 'Noto Sans', sans-serif; color: #0F1D41">Incumplir tus obligaciones te puede generar comisiones e intereses moratorios.</p>
+          <p style="margin: 0; font: 400 27px/1.45 'Noto Sans', sans-serif; color: #0F1D41">Contratar créditos que excedan tu capacidad de pago afecta tu historial crediticio.</p>
+        </div>
+      </div>
+      <div style="flex: 0 0 560px; display: grid; gap: 24px">
+        <div style="border: 2px solid #E2E5EC; border-radius: 20px; padding: 32px 36px; display: flex; align-items: center; gap: 28px">
+          <img src="assets/logo-buro-trans.png" alt="Buró de Entidades Financieras" style="height: 84px">
+          <div style="display: grid; gap: 6px">
+            <strong style="font: 700 27px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Buró de Entidades Financieras</strong>
+            <span style="font: 700 25px/1.3 'Noto Sans', sans-serif; color: #C11318">www.buro.gob.mx</span>
+          </div>
+        </div>
+        <div style="border: 2px solid #E2E5EC; border-radius: 20px; padding: 32px 36px; display: flex; align-items: center; gap: 28px">
+          <img src="assets/logo-condusef-trans.png" alt="CONDUSEF" style="height: 74px">
+          <div style="display: grid; gap: 6px">
+            <strong style="font: 700 27px/1.3 'Noto Sans', sans-serif; color: #0F1D41">55 53 400 999 · 800 999 8080</strong>
+            <span style="font: 700 25px/1.3 'Noto Sans', sans-serif; color: #C11318">www.condusef.gob.mx</span>
+          </div>
+        </div>
+        <div style="border: 2px solid #E2E5EC; border-radius: 20px; padding: 32px 36px; display: flex; align-items: center; gap: 28px">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8 7.5 9.5 4.3-1.5 7.5-4.9 7.5-9.5v-6L12 2.5Z"></path><path d="m8.8 12 2.2 2.2 4.2-4.4"></path></svg>
+          <div style="display: grid; gap: 6px">
+            <strong style="font: 700 27px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Aviso de Privacidad</strong>
+            <span style="font: 400 25px/1.3 'Noto Sans', sans-serif; color: #4A5468">Protección de tus datos personales</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="UNE" data-speaker-notes="Datos completos de la Unidad Especializada de Atención a Usuarios: domicilio, teléfono, correos y horario." style="background: #F4F2ED; box-sizing: border-box; height: 100%; padding: 100px 120px; display: flex; flex-direction: column">
+    <div style="font: 700 24px/1.3 'Noto Sans', sans-serif; letter-spacing: 0.08em; color: #C11318">ATENCIÓN A USUARIOS</div>
+    <h2 style="margin: 18px 0 0; font: 700 60px/1.15 'Noto Sans', sans-serif; color: #0F1D41">Unidad Especializada <span style="font: italic 400 60px/1.15 'Libre Baskerville', Georgia, serif; color: #ED1C24">(UNE)</span></h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 80px">
+      <div style="background: #fff; border-radius: 24px; padding: 44px 48px; display: grid; gap: 16px; align-content: start">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
+        <strong style="font: 700 30px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Domicilio</strong>
+        <p style="margin: 0; font: 400 28px/1.45 'Noto Sans', sans-serif; color: #4A5468">Calle 20 de Noviembre No. 818, Col. Ascensión Gómez, C.P. 87040, Cd. Victoria, Tamaulipas.</p>
+      </div>
+      <div style="background: #fff; border-radius: 24px; padding: 44px 48px; display: grid; gap: 16px; align-content: start">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l1.5 4.5L8 10a12 12 0 0 0 6 6l1.5-2.5L20 15v4a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"></path></svg>
+        <strong style="font: 700 30px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Teléfono</strong>
+        <p style="margin: 0; font: 400 28px/1.45 'Noto Sans', sans-serif; color: #4A5468">(834) 314-1252</p>
+      </div>
+      <div style="background: #fff; border-radius: 24px; padding: 44px 48px; display: grid; gap: 16px; align-content: start">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"></rect><path d="m4 7 8 6.5L20 7"></path></svg>
+        <strong style="font: 700 30px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Correo electrónico</strong>
+        <p style="margin: 0; font: 400 28px/1.45 'Noto Sans', sans-serif; color: #4A5468">une@tandamiranda.com<br>clientes.prestamos@tandamiranda.com</p>
+      </div>
+      <div style="background: #fff; border-radius: 24px; padding: 44px 48px; display: grid; gap: 16px; align-content: start">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>
+        <strong style="font: 700 30px/1.3 'Noto Sans', sans-serif; color: #0F1D41">Horario</strong>
+        <p style="margin: 0; font: 400 28px/1.45 'Noto Sans', sans-serif; color: #4A5468">Lunes a viernes, de 9:00 a 17:00 hrs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Cierre" data-speaker-notes="Cierre y llamada a la acción: iniciar solicitud por correo o teléfono." style="background: #0F1D41; box-sizing: border-box; height: 100%; padding: 90px 120px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center">
+    <img src="assets/tm-logo-horizontal-blanco.svg" alt="La Tanda Miranda" style="height: 44px">
+    <div style="display: grid; gap: 30px; justify-items: center">
+      <img src="assets/tm-vaca-blanco.svg" alt="Vaquita, mascota de Tanda Miranda" style="height: 190px">
+      <h2 style="margin: 0; font: italic 400 84px/1.15 'Libre Baskerville', Georgia, serif; color: #fff">¡Alcancemos juntos <em style="font-style: inherit; color: #ED1C24">tus metas</em>!</h2>
+      <p style="margin: 0; font: 400 32px/1.5 'Noto Sans', sans-serif; color: rgba(255,255,255,0.88)">clientes.prestamos@tandamiranda.com · (834) 314-1252</p>
+    </div>
+    <p style="margin: 0; font: 400 24px/1.45 'Noto Sans', sans-serif; color: rgba(255,255,255,0.62); max-width: 1500px">La Tanda Miranda, S.A. de C.V., SOFOM, E.N.R., inscrita en el SIPRES de la CONDUSEF. Incumplir tus obligaciones te puede generar comisiones e intereses moratorios. Contratar créditos que excedan tu capacidad de pago afecta tu historial crediticio.</p>
+  </section>
+
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;textoRequisitosPx&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 29, &quot;min&quot;: 24, &quot;max&quot;: 38, &quot;step&quot;: 1, &quot;unit&quot;: &quot;px&quot;, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Diapositiva 6 — Requisitos&quot;},
+  &quot;mostrarFotoRequisitos&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Diapositiva 6 — Requisitos&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return {
+      textoReq: p.textoRequisitosPx ?? 29,
+      mostrarFoto: p.mostrarFotoRequisitos ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>
