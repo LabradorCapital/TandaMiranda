@@ -1,0 +1,117 @@
+/* ============================================================
+   TIER 3 — COMPONENT TOKENS + MODES (surface registers, density)
+   Sparing by design: ~90% of UI resolves through tier 2 alone.
+
+   SURFACE REGISTERS — one attribute switches the brand register:
+     (default / [data-surface="marketing"])  pill controls, uppercase
+       tracked labels, official Rojo Miranda #ED1C24 CTAs.
+     [data-surface="app"]  md-radius controls, sentence-case labels,
+       AA-safe red-650 CTAs, denser type. Product shells set this once
+       on <body>; marketing pages need nothing (back-compatible).
+
+   DENSITY MODES — [data-density="compact"] steps control/row heights
+   and paddings down one notch. Default = comfortable. Ops/back-office
+   screens should ship a density switcher.
+   ============================================================ */
+
+:root {
+  /* Controls (Button, Input, Select share these).
+     Root values = marketing register (matches the original pill CTAs);
+     the app register steps down to the reference 32/40/48. */
+  --control-height-sm: 36px;
+  --control-height-md: 44px;
+  --control-height-lg: 52px;
+  --control-pad-x-sm: 20px;
+  --control-pad-x-md: 28px;
+  --control-pad-x-lg: 32px;
+
+  /* Marketing register defaults */
+  --control-radius: var(--radius-pill);
+  --control-font-size-sm: 12px; /* @kind font */
+  --control-font-size-md: 13px; /* @kind font */
+  --control-font-size-lg: 15px; /* @kind font */
+  --control-font-weight: 700; /* @kind font */
+  --control-transform: uppercase; /* @kind other */
+  --control-tracking: var(--label-tracking); /* @kind other */
+
+  /* Button */
+  --button-bg-primary: var(--tm-red-600);            /* marketing: official red */
+  --button-bg-primary-hover: var(--tm-red-700);
+  --button-fg-primary: var(--color-fg-on-solid);
+
+  /* Input / Field */
+  --input-bg: var(--color-bg-surface);
+  --input-border: var(--color-border-strong);
+  --input-radius: var(--control-radius);
+  --field-gap: var(--space-15);       /* label → input */
+  --form-gap: var(--space-4);         /* field → field */
+
+  /* Card */
+  --card-padding: var(--space-5);
+  --card-radius: var(--radius-lg);
+
+  /* Table */
+  --table-row-height: 48px;
+  --table-header-height: 44px;
+  --table-cell-pad-x: var(--space-4);
+
+  /* Touch targets: ≥24px hard minimum (WCAG 2.5.8); 44–48 on touch. */
+  --target-min: 24px;
+  --target-touch: 44px;
+}
+
+/* ---- APP REGISTER ---- */
+[data-surface="app"] {
+  --control-radius: var(--radius-md);
+  --control-font-size-sm: 13px; /* @kind font */
+  --control-font-size-md: 14px; /* @kind font */
+  --control-font-size-lg: 16px; /* @kind font */
+  --control-font-weight: 600; /* @kind font */
+  --control-transform: none; /* @kind other */
+  --control-tracking: 0; /* @kind other */
+  --control-height-sm: 32px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+  --control-pad-x-sm: 12px;
+  --control-pad-x-md: 16px;
+  --control-pad-x-lg: 20px;
+
+  --button-bg-primary: var(--color-bg-accent-solid);        /* red-650: AA */
+  --button-bg-primary-hover: var(--color-bg-accent-solid-hover);
+
+  --input-radius: var(--radius-md);
+  --card-radius: 14px; /* documented exception: between md and lg for app cards */
+}
+
+/* Explicit marketing register (same as default; for nesting back out of app) */
+[data-surface="marketing"] {
+  --control-radius: var(--radius-pill);
+  --control-font-size-sm: 12px; /* @kind font */
+  --control-font-size-md: 13px; /* @kind font */
+  --control-font-size-lg: 15px; /* @kind font */
+  --control-font-weight: 700; /* @kind font */
+  --control-transform: uppercase; /* @kind other */
+  --control-tracking: var(--label-tracking); /* @kind other */
+  --control-pad-x-sm: 14px;
+  --control-pad-x-md: 20px;
+  --control-pad-x-lg: 24px;
+  --button-bg-primary: var(--tm-red-600);
+  --button-bg-primary-hover: var(--tm-red-700);
+  --input-radius: var(--radius-pill);
+  --card-radius: var(--radius-lg);
+}
+
+/* ---- COMPACT DENSITY (assumes app register) ---- */
+[data-density="compact"] {
+  --control-height-sm: 28px;
+  --control-height-md: 32px;
+  --control-height-lg: 40px;
+  --control-pad-x-sm: 10px;
+  --control-pad-x-md: 12px;
+  --control-pad-x-lg: 16px;
+  --table-row-height: 36px;
+  --table-header-height: 36px;
+  --table-cell-pad-x: var(--space-3);
+  --card-padding: var(--space-4);
+  --form-gap: var(--space-3);
+}

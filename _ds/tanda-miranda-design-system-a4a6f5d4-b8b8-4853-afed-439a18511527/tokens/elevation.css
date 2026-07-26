@@ -1,0 +1,54 @@
+/* ============================================================
+   ELEVATION · Z-INDEX · FOCUS · OPACITY
+   Elevation expresses stacking order + interactivity, not
+   decoration — the brand's own materials are nearly flat, so use
+   sparingly. Every shadow pairs with a z-layer. In dark mode,
+   shadows are nearly invisible: elevation is expressed by surface
+   lightening (see --color-bg-surface-raised) + a subtle border.
+   ============================================================ */
+
+:root {
+  --elevation-0: none;                                   /* flat + border */
+  --elevation-100: 0 1px 2px rgba(15, 29, 65, 0.06), 0 1px 3px rgba(15, 29, 65, 0.10);
+  --elevation-200: 0 2px 4px -1px rgba(15, 29, 65, 0.06), 0 4px 6px -1px rgba(15, 29, 65, 0.10);
+  --elevation-300: 0 4px 6px -2px rgba(15, 29, 65, 0.05), 0 10px 15px -3px rgba(15, 29, 65, 0.10);
+  --elevation-400: 0 10px 10px -5px rgba(15, 29, 65, 0.04), 0 20px 25px -5px rgba(15, 29, 65, 0.10);
+  --elevation-500: 0 25px 50px -12px rgba(15, 29, 65, 0.25);
+
+  /* legacy aliases */
+  --shadow-sm: var(--elevation-100);
+  --shadow-md: 0 8px 24px rgba(15, 29, 65, 0.10);
+  --shadow-lg: 0 16px 40px rgba(15, 29, 65, 0.14);
+
+  /* Z-index scale — never hardcode z-index; consume these. */
+  --z-base: 0; /* @kind other */
+  --z-raised: 1; /* @kind other */
+  --z-dropdown: 1000; /* @kind other */
+  --z-sticky: 1100; /* @kind other */
+  --z-banner: 1200; /* @kind other */
+  --z-overlay: 1300; /* @kind other */ /* scrims / backdrops */
+  --z-modal: 1400; /* @kind other */
+  --z-popover: 1500; /* @kind other */
+  --z-toast: 1700; /* @kind other */
+  --z-tooltip: 1800; /* @kind other */
+
+  /* Global focus ring — ONE definition, consumed everywhere via
+     :focus-visible (see styles.css). box-shadow recipes for cases
+     where outline can't work (rounded pills, inset-on-solid). */
+  --focus-ring: 0 0 0 2px var(--color-bg-page), 0 0 0 4px var(--color-border-focus); /* @kind shadow */
+  --focus-ring-tight: 0 0 0 2px var(--color-border-focus); /* @kind shadow */
+  --focus-ring-inset: inset 0 0 0 2px var(--color-border-focus); /* @kind shadow */
+
+  /* Opacity */
+  --opacity-disabled: 0.45; /* @kind other */
+  --opacity-overlay: 0.48; /* @kind other */
+}
+
+[data-theme="dark"] {
+  /* shadows deepen but carry less; surfaces lighten instead */
+  --elevation-100: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --elevation-200: 0 2px 4px -1px rgba(0, 0, 0, 0.35), 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --elevation-300: 0 4px 6px -2px rgba(0, 0, 0, 0.35), 0 10px 15px -3px rgba(0, 0, 0, 0.45);
+  --elevation-400: 0 10px 10px -5px rgba(0, 0, 0, 0.35), 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --elevation-500: 0 25px 50px -12px rgba(0, 0, 0, 0.65);
+}

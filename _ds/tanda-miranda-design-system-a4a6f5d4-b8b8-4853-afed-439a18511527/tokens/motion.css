@@ -1,0 +1,27 @@
+/* ============================================================
+   MOTION TOKENS
+   Productive register only — motion communicates causality and
+   status, never decoration (no motion exists in brand source
+   material; these are conservative standard additions).
+   Rules: exit ≈ 0.7× enter; animate transform/opacity only;
+   prefers-reduced-motion handled globally in styles.css.
+   ============================================================ */
+
+:root {
+  --duration-instant: 0ms; /* @kind other */
+  --duration-fast-1: 100ms; /* @kind other */ /* hover fills, small fades */
+  --duration-fast-2: 150ms; /* @kind other */ /* checkbox, switch, button press */
+  --duration-base: 200ms; /* @kind other */ /* default transitions, tooltips */
+  --duration-moderate: 300ms; /* @kind other */ /* dropdowns, accordions, tabs */
+  --duration-slow: 400ms; /* @kind other */ /* modals, drawers */
+  --duration-slower: 600ms; /* @kind other */ /* page transitions only */
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --ease-enter: cubic-bezier(0, 0, 0, 1); /* @kind other */ /* decelerate — entering */
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1); /* @kind other */ /* accelerate — leaving */
+  --ease-linear: linear; /* @kind other */ /* spinners/progress only */
+
+  /* legacy aliases */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-md: var(--duration-base); /* @kind other */
+}

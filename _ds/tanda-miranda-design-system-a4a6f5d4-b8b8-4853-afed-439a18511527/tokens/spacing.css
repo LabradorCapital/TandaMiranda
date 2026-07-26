@@ -1,0 +1,48 @@
+/* ============================================================
+   SPACING · RADIUS · BORDER · LAYOUT TOKENS
+   4px base unit, 8pt layout rhythm. Rules: inner padding ≤ outer
+   margins; gap within a group < gap between groups; off-scale
+   values require a documented exception.
+   ============================================================ */
+
+:root {
+  --space-0: 0;
+  --space-05: 2px;   /* icon nudges */
+  --space-1: 4px;    /* icon↔label gap */
+  --space-15: 6px;   /* compact control padding, label→input */
+  --space-2: 8px;    /* default gap inside controls */
+  --space-3: 12px;   /* input padding, small stacks */
+  --space-4: 16px;   /* DEFAULT component padding, field→field */
+  --space-5: 24px;   /* card padding, section gaps */
+  --space-6: 32px;   /* between component groups */
+  --space-7: 48px;   /* major section separation */
+  --space-8: 64px;   /* page-level bands */
+  --space-9: 96px;   /* marketing rhythm */
+  --space-10: 128px;
+
+  /* Radius — register is a brand dial: marketing = pill (signature),
+     product UI = md (per system decision). Nested rule: inner radius
+     ≈ outer radius − padding (use sm inside lg). */
+  --radius-xs: 4px;    /* checkboxes, tiny tags */
+  --radius-sm: 6px;    /* chips, badges, inline code */
+  --radius-md: 10px;   /* app controls: buttons, inputs, selects */
+  --radius-lg: 20px;   /* cards, panels, popovers */
+  --radius-xl: 28px;   /* modals, sheets */
+  --radius-pill: 999px;/* marketing CTAs, tags, avatars */
+  --radius-circle: 50%;
+
+  /* Border widths */
+  --border-width-sm: 1px;
+  --border-width-md: 1.5px;
+  --border-width-lg: 2px;   /* focus / selected emphasis */
+  --border-width: var(--border-width-sm); /* legacy alias */
+
+  /* Layout — breakpoints are min-width, mobile-first. CSS vars can't
+     drive media queries; these are the canonical documented values:
+     sm 640 · md 768 · lg 1024 · xl 1280 · 2xl 1536.
+     Grid: 12 col desktop / 8 tablet / 4 mobile; gutters 24/16;
+     margins 32/24/16. */
+  --container-max: 1160px;      /* marketing */
+  --container-app-max: 1440px;  /* product shells */
+  --container-prose: 65ch;
+}

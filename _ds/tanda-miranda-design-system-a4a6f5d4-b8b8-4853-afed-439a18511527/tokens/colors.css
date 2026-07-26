@@ -1,0 +1,171 @@
+/* ============================================================
+   TIER 2 — SEMANTIC COLOR ROLES (the layer components consume)
+   Meaning, not appearance. Theming = re-mapping this layer:
+   [data-theme="dark"] re-points every role at different tier-1
+   steps — components never change.
+   Brand rules honored: white predominant, navy for backgrounds
+   and titles, red for accents/CTAs (and, per system decision,
+   red doubles as the danger hue — so status is NEVER carried by
+   color alone: icon + label always accompany it).
+   ============================================================ */
+
+:root {
+  /* ---- Backgrounds ---- */
+  --color-bg-page: var(--tm-neutral-0);
+  --color-bg-surface: var(--tm-neutral-0);
+  --color-bg-surface-raised: var(--tm-neutral-0);   /* + elevation shadow */
+  --color-bg-subtle: var(--tm-neutral-50);
+  --color-bg-muted: var(--tm-neutral-100);
+  --color-bg-inverse: var(--tm-navy-900);
+  --color-bg-overlay: var(--tm-alpha-navy-500);      /* modal scrim */
+  --color-bg-hover: var(--tm-alpha-navy-50);         /* ghost/row hover tint */
+  --color-bg-active: var(--tm-alpha-navy-100);
+  --color-bg-selected: var(--tm-navy-50);
+
+  --color-bg-brand-solid: var(--tm-navy-900);
+  --color-bg-brand-solid-hover: var(--tm-navy-700);
+  --color-bg-brand-subtle: var(--tm-navy-50);
+  --color-bg-accent-solid: var(--tm-red-650);        /* app CTA (AA w/ white) */
+  --color-bg-accent-solid-hover: var(--tm-red-700);
+  --color-bg-accent-subtle: var(--tm-red-50);
+
+  --color-bg-success-solid: var(--tm-green-600);
+  --color-bg-success-subtle: var(--tm-green-50);
+  --color-bg-warning-solid: var(--tm-amber-500);     /* takes navy text */
+  --color-bg-warning-subtle: var(--tm-amber-50);
+  --color-bg-danger-solid: var(--tm-red-650);
+  --color-bg-danger-solid-hover: var(--tm-red-700);
+  --color-bg-danger-subtle: var(--tm-red-50);
+  --color-bg-info-solid: var(--tm-blue-600);
+  --color-bg-info-subtle: var(--tm-blue-50);
+
+  /* ---- Foregrounds (text & icons) ---- */
+  --color-fg-default: var(--tm-navy-900);
+  --color-fg-muted: var(--tm-neutral-600);
+  --color-fg-subtle: var(--tm-neutral-500);
+  --color-fg-disabled: var(--tm-neutral-400);
+  --color-fg-on-solid: var(--tm-neutral-0);          /* on navy/red/green/blue solids */
+  --color-fg-on-warning: var(--tm-navy-900);         /* amber solids need dark text */
+  --color-fg-inverse: var(--tm-neutral-0);
+  --color-fg-inverse-muted: #AEB6CC;
+  --color-fg-brand: var(--tm-navy-900);
+  --color-fg-accent: var(--tm-red-650);
+  --color-fg-success: var(--tm-green-600);
+  --color-fg-warning: var(--tm-amber-600);
+  --color-fg-danger: var(--tm-red-700);              /* red-600 fails 4.5:1 for body text */
+  --color-fg-info: var(--tm-blue-600);
+  --color-fg-link: var(--tm-navy-800);
+  --color-fg-link-hover: var(--tm-red-700);
+
+  /* ---- Borders ---- */
+  --color-border-subtle: var(--tm-neutral-100);
+  --color-border-default: var(--tm-neutral-200);
+  --color-border-strong: var(--tm-neutral-300);
+  --color-border-disabled: var(--tm-neutral-200);
+  --color-border-focus: var(--tm-navy-500);          /* global focus ring color */
+  --color-border-inverse: var(--tm-alpha-white-200);
+  --color-border-success: var(--tm-green-600);
+  --color-border-warning: var(--tm-amber-500);
+  --color-border-danger: var(--tm-red-650);
+  --color-border-info: var(--tm-blue-600);
+
+  /* ---- Data-viz (separate from UI semantics; colorblind-safe order) ---- */
+  --chart-cat-1: var(--tm-blue-500);
+  --chart-cat-2: #DD8500;
+  --chart-cat-3: #1F9E89;
+  --chart-cat-4: #8461C9;
+  --chart-cat-5: var(--tm-red-700);
+  --chart-cat-6: var(--tm-neutral-500);
+  --chart-positive: var(--tm-green-600);   /* always paired with ▲/+ */
+  --chart-negative: var(--tm-red-650);     /* always paired with ▼/− */
+  --chart-pending: var(--tm-amber-500);
+  --chart-benchmark: var(--tm-neutral-600);
+  --chart-grid: var(--tm-neutral-100);
+  --chart-axis: var(--tm-neutral-500);
+
+  /* ---- Legacy semantic aliases (pre-refactor names; keep working) ---- */
+  --color-bg-accent: var(--color-bg-accent-subtle);
+  --color-text-primary: var(--color-fg-default);
+  --color-text-secondary: var(--color-fg-muted);
+  --color-text-muted: var(--color-fg-subtle);
+  --color-text-inverse: var(--color-fg-inverse);
+  --color-text-inverse-muted: var(--color-fg-inverse-muted);
+  --color-brand-primary: var(--tm-navy-900);
+  --color-brand-accent: var(--tm-red-600);
+  --color-brand-accent-hover: var(--tm-red-700);
+  --color-link: var(--color-fg-link);
+  --color-link-underline: var(--tm-red-600);
+}
+
+/* ============================================================
+   DARK THEME — semantic re-map (not a ramp inversion).
+   Apply data-theme="dark" on <html>, <body>, or any container.
+   The official Azul Tanda (#0F1D41) becomes the RAISED surface;
+   the page sits below it. Large solid fills desaturate one step.
+   Every pair below re-verified for AA independently of light.
+   ============================================================ */
+
+[data-theme="dark"] {
+  --color-bg-page: var(--tm-navy-1000);
+  --color-bg-surface: var(--tm-navy-950);
+  --color-bg-surface-raised: var(--tm-navy-900);     /* elevation = lightness */
+  --color-bg-subtle: var(--tm-navy-950);
+  --color-bg-muted: var(--tm-navy-800);
+  --color-bg-inverse: var(--tm-neutral-100);
+  --color-bg-overlay: rgba(3, 6, 16, 0.64);
+  --color-bg-hover: var(--tm-alpha-white-100);
+  --color-bg-active: var(--tm-alpha-white-200);
+  --color-bg-selected: var(--tm-navy-800);
+
+  --color-bg-brand-solid: var(--tm-navy-600);
+  --color-bg-brand-solid-hover: var(--tm-navy-500);
+  --color-bg-brand-subtle: var(--tm-navy-800);
+  --color-bg-accent-solid: var(--tm-red-650);
+  --color-bg-accent-solid-hover: var(--tm-red-500);
+  --color-bg-accent-subtle: #3A1214;
+
+  --color-bg-success-solid: var(--tm-green-500);
+  --color-bg-success-subtle: #0C2B1D;
+  --color-bg-warning-solid: var(--tm-amber-400);
+  --color-bg-warning-subtle: #33260B;
+  --color-bg-danger-solid: var(--tm-red-650);
+  --color-bg-danger-solid-hover: var(--tm-red-500);
+  --color-bg-danger-subtle: #3A1214;
+  --color-bg-info-solid: var(--tm-blue-500);
+  --color-bg-info-subtle: #142441;
+
+  --color-fg-default: #E8EBF4;
+  --color-fg-muted: #A9B2CB;
+  --color-fg-subtle: #7E88A6;
+  --color-fg-disabled: #4A5470;
+  --color-fg-on-solid: var(--tm-neutral-0);
+  --color-fg-on-warning: var(--tm-navy-900);
+  --color-fg-inverse: var(--tm-navy-900);
+  --color-fg-inverse-muted: var(--tm-neutral-600);
+  --color-fg-brand: var(--tm-navy-200);
+  --color-fg-accent: var(--tm-red-400);
+  --color-fg-success: var(--tm-green-300);
+  --color-fg-warning: var(--tm-amber-300);
+  --color-fg-danger: var(--tm-red-300);
+  --color-fg-info: var(--tm-blue-300);
+  --color-fg-link: var(--tm-navy-200);
+  --color-fg-link-hover: var(--tm-red-300);
+
+  --color-border-subtle: #1D2645;
+  --color-border-default: #2A3557;
+  --color-border-strong: #3C4870;
+  --color-border-disabled: #232C4D;
+  --color-border-focus: #9CB4E8;
+  --color-border-inverse: var(--tm-alpha-navy-300);
+  --color-border-success: var(--tm-green-400);
+  --color-border-warning: var(--tm-amber-400);
+  --color-border-danger: var(--tm-red-400);
+  --color-border-info: var(--tm-blue-400);
+
+  --chart-grid: #1D2645;
+  --chart-axis: #7E88A6;
+  --chart-positive: var(--tm-green-300);
+  --chart-negative: var(--tm-red-300);
+
+  --color-link-underline: var(--tm-red-400);
+}

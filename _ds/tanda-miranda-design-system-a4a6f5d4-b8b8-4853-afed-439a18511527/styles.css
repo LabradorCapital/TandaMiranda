@@ -1,0 +1,48 @@
+@import "tokens/fonts.css";
+@import "tokens/primitives.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/elevation.css";
+@import "tokens/motion.css";
+@import "tokens/modes.css";
+
+/* ============================================================
+   BASE RULES — the few global behaviors the system owns.
+   ============================================================ */
+
+/* Global focus ring: ONE definition (§ Extended foundations).
+   Components never write their own focus styles. */
+:focus-visible {
+  outline: var(--border-width-lg) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Links: navy with the brand's red underline accent. */
+a {
+  color: var(--color-fg-link);
+  text-decoration-color: var(--color-link-underline);
+  text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--color-fg-link-hover);
+}
+
+::selection {
+  background: var(--tm-navy-100);
+  color: var(--tm-navy-900);
+}
+[data-theme="dark"] ::selection {
+  background: var(--tm-navy-600);
+  color: #fff;
+}
+
+/* Reduced motion is mandatory: state changes stay, movement goes. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
