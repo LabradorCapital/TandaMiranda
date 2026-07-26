@@ -114,8 +114,8 @@ Cada envío indica de dónde viene con dos campos:
 | `ingresos`            | string  |                                                                       |
 | `gastos`              | string  | Gastos fijos mensuales.                                               |
 | `otrosIngresos`       | string  |                                                                       |
-| `empresa`             | string  | Solo `index.html` lo captura; en `form.html` llega como `""`.         |
-| `producto`            | string  | Solo `index.html` lo captura; en `form.html` llega como `""`.         |
+| `empresa`             | string  | Ningún formulario lo captura hoy; llega como `""` (el campo sigue en el payload para no romper tu parser si se agrega después). |
+| `producto`            | string  | Igual que `empresa`: hoy llega como `""`.                             |
 | `monto`               | string  | Monto solicitado.                                                    |
 | `plazo`               | string  | Plazo del préstamo.                                                  |
 | `uso`                 | string  | Uso del recurso.                                                      |
@@ -130,23 +130,31 @@ Cada envío indica de dónde viene con dos campos:
 
 ### Folio en la respuesta (opcional)
 
-Si tu API responde con `{ "folio": "..." }`, `form.html` muestra ese folio en su
-pantalla de confirmación. Si no devuelves folio, el frontend genera uno local
-(`TM-AÑO-XXXXXX`) solo para la UI. (`index.html` no usa folio.)
+Si tu API responde con `{ "folio": "..." }`, **ambos formularios** muestran ese
+folio en su pantalla de confirmación.
+
+- `form.html`: si no devuelves folio, genera uno local (`TM-AÑO-XXXXXX`) solo
+  para la UI.
+- `index.html`: si no devuelves folio, muestra el mensaje de éxito sin folio.
 
 ---
 
 ## 3. Respuesta esperada y manejo de errores
 
 - **Éxito:** responde con un status **2xx** (p. ej. `200` o `201`). El
-  frontend limpia el formulario y muestra el mensaje de "¡Solicitud
-  enviada!".
+  frontend muestra el mensaje de "¡Solicitud enviada!" (`form.html` pasa a su
+  pantalla de confirmación con el folio; `index.html` muestra el aviso de
+  éxito bajo el paso de confirmación).
 - **Error:** cualquier status **no-2xx**, o un fallo de red, muestra un
   mensaje de error elegante en la UI. El frontend no interpreta el cuerpo de
   la respuesta de error, así que basta con devolver el status adecuado.
 
 El cuerpo de la respuesta no es obligatorio; puedes devolver JSON si quieres,
-pero el frontend solo evalúa `response.ok`.
+pero el frontend solo evalúa `response.ok` (y `folio` si viene).
+
+Mientras el envío está en curso el botón queda en estado de carga y los clics
+adicionales se descartan, así que **un doble clic no genera dos solicitudes**.
+Aun así, conviene que tu API sea idempotente ante reintentos del usuario.
 
 ### CORS (importante)
 
